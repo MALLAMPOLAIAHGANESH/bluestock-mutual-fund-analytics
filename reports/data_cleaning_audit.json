@@ -1,0 +1,154 @@
+[
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "01_fund_master",
+    "column": "amfi_code",
+    "action": "UNIQUENESS_CHECK",
+    "details": "All amfi_codes are unique \u2713",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "01_fund_master",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "Rows: 40 \u2192 40",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "02_nav_history",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "Rows: 46000 \u2192 46000",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "03_aum_by_fund_house",
+    "column": "aum_crore",
+    "action": "CONSISTENCY_CHECK",
+    "details": "AUM units consistent \u2713",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "03_aum_by_fund_house",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "All 90 rows retained",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "04_monthly_sip_inflows",
+    "column": "yoy_growth_pct",
+    "action": "NULL_DOCUMENTED_BUSINESS_LOGIC",
+    "details": "12 NULLs are EXPECTED for first 12 months (no prior year baseline). Rows retained. NULLs preserved as NULL in DB.",
+    "rows_affected": "12"
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "04_monthly_sip_inflows",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "All 48 rows retained",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "05_category_inflows",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "All 144 rows retained",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "06_industry_folio_count",
+    "column": "total_folios_crore",
+    "action": "INTEGRITY_CHECK",
+    "details": "Folio totals consistent \u2713",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "06_industry_folio_count",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "All 21 rows retained",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "07_scheme_performance",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "Rows: 40 \u2192 40",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "08_investor_transactions",
+    "column": "annual_income_lakh",
+    "action": "OUTLIER_FLAGGED",
+    "details": "587 records outside 1st\u201399th percentile range [3.3, 90.6] \u2014 documented, not dropped",
+    "rows_affected": "587"
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "08_investor_transactions",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "Rows: 32778 \u2192 32778",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "09_portfolio_holdings",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "All 322 rows retained",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "10_benchmark_indices",
+    "column": "*",
+    "action": "SUMMARY",
+    "details": "All 8050 rows retained",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "02_nav_history",
+    "column": "amfi_code",
+    "action": "REFERENTIAL_INTEGRITY_PASS",
+    "details": "All FK references valid \u2713",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "07_scheme_performance",
+    "column": "amfi_code",
+    "action": "REFERENTIAL_INTEGRITY_PASS",
+    "details": "All FK references valid \u2713",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "08_investor_transactions",
+    "column": "amfi_code",
+    "action": "REFERENTIAL_INTEGRITY_PASS",
+    "details": "All FK references valid \u2713",
+    "rows_affected": 0
+  },
+  {
+    "timestamp": "2026-06-23 11:26:01",
+    "dataset": "09_portfolio_holdings",
+    "column": "amfi_code",
+    "action": "REFERENTIAL_INTEGRITY_PASS",
+    "details": "All FK references valid \u2713",
+    "rows_affected": 0
+  }
+]
