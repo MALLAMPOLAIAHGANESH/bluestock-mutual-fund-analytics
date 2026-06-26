@@ -28,7 +28,7 @@ The project includes:
 | --------------- | --------------------------- |
 | Language        | Python 3                    |
 | Data Processing | Pandas, NumPy               |
-| Database        | SQLite                      |
+| Database        | SQLite , postgerSql                    |
 | ORM             | SQLAlchemy                  |
 | Visualization   | Matplotlib, Seaborn, Plotly |
 | Notebook        | Jupyter Notebook            |
