@@ -2,7 +2,7 @@
 -- Bluestock Mutual Fund Analytics Platform
 -- PostgreSQL Database Schema — Production Design (3NF)
 -- ============================================================
--- Author  : [Your Name] — Data Analyst Intern, Bluestock Fintech
+-- Author  : MALLAM POLAIAH GANESH — Data Analyst Intern, Bluestock Fintech
 -- Created : 2026-06-23
 -- Database: bluestock_mf
 --
