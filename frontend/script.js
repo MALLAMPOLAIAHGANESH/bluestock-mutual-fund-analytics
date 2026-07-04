@@ -577,4 +577,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // =============================================
     renderedPages.add('overview');
     renderOverviewCharts();
+
+    // =============================================
+    // 7. DOWNLOADS SYSTEM (Validation & Toast Alert)
+    // =============================================
+    window.triggerDownload = function(fileKey) {
+        const apiHost = window.location.port === "8000" ? "" : "http://localhost:8000";
+        const existsUrl = `${apiHost}/api/v1/downloads/${fileKey}/exists`;
+        const downloadUrl = `${apiHost}/api/v1/downloads/${fileKey}`;
+
+        fetch(existsUrl)
+            .then(res => {
+                if (!res.ok) throw new Error("Validation check failed");
+                return res.json();
+            })
+            .then(data => {
+                if (data && data.exists) {
+                    const a = document.createElement("a");
+                    a.href = downloadUrl;
+                    a.setAttribute("download", "");
+                    a.style.display = "none";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                } else {
+                    showToastNotification("Requested file not found.");
+                }
+            })
+            .catch(err => {
+                console.error("Download verification error:", err);
+                showToastNotification("Requested file not found.");
+            });
+    };
+
+    function showToastNotification(message) {
+        let container = document.getElementById("toast-container");
+        if (!container) {
+            container = document.createElement("div");
+            container.id = "toast-container";
+            document.body.appendChild(container);
+        }
+        
+        const toast = document.createElement("div");
+        toast.className = "premium-toast";
+        toast.innerHTML = `<i data-lucide="alert-triangle" style="width:16px;height:16px;color:#EF4444;"></i> <span>${message}</span>`;
+        container.appendChild(toast);
+        
+        if (window.lucide) {
+            lucide.createIcons({
+                attrs: {
+                    class: 'lucide'
+                },
+                nameAttr: 'data-lucide'
+            });
+        }
+        
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(20px) scale(0.95)";
+            toast.style.transition = "all 0.3s ease";
+            setTimeout(() => {
+                if (toast.parentNode === container) {
+                    container.removeChild(toast);
+                }
+            }, 300);
+        }, 3500);
+    }
 });

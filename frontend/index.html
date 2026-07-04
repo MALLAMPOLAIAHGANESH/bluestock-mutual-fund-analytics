@@ -951,13 +951,13 @@
                             </div>
                         </div>
                         <div style="padding: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:16px 0;" onclick="window.open('/api/v1/downloads/csv')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:16px 0;" onclick="triggerDownload(\'csv\')">
                                 <i data-lucide="file-spreadsheet" style="color:var(--green);"></i> Export CSV Dataset
                             </button>
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:16px 0;" onclick="window.open('/api/v1/downloads/excel')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:16px 0;" onclick="triggerDownload(\'excel\')">
                                 <i data-lucide="file-text" style="color:var(--primary-blue);"></i> Export Excel Report
                             </button>
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:16px 0;" onclick="window.open('/api/v1/downloads/pdf')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:16px 0;" onclick="triggerDownload(\'pdf\')">
                                 <i data-lucide="file" style="color:var(--red);"></i> Export PDF Analytics
                             </button>
                         </div>
@@ -1446,16 +1446,16 @@
                     <div class="chart-card fade-in">
                         <div class="card-header"><div class="card-title"><h3>11. Export & Extract Risk Analytics</h3><p>Download risk records locally</p></div></div>
                         <div style="padding:20px; display:grid; grid-template-columns: repeat(4, 1fr); gap:16px;">
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="window.open('/api/v1/downloads/risk-pdf')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="triggerDownload(\'risk-pdf\')">
                                 <i data-lucide="file" style="color:var(--red);"></i> Risk Report (PDF)
                             </button>
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="window.open('/api/v1/downloads/risk-csv')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="triggerDownload(\'risk-csv\')">
                                 <i data-lucide="file-spreadsheet" style="color:var(--green);"></i> Export CSV
                             </button>
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="window.open('/api/v1/downloads/risk-excel')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="triggerDownload(\'risk-excel\')">
                                 <i data-lucide="file-text" style="color:var(--primary-blue);"></i> Export Excel
                             </button>
-                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="window.open('/api/v1/downloads/risk-pdf-full')">
+                            <button class="profile-action-btn outline" style="justify-content:center;padding:12px 0;" onclick="triggerDownload(\'risk-pdf-full\')">
                                 <i data-lucide="folder" style="color:var(--purple);"></i> Complete PDF
                             </button>
                         </div>
@@ -1809,8 +1809,8 @@
                         <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
                             <div class="card-title"><h3>1. Report Summary</h3><p>Platform wide CAGR & return status summary</p></div>
                             <div style="display:flex;gap:10px;">
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/performance-pdf')"><i data-lucide="download"></i> Download PDF</button>
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/performance-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'performance-pdf\')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'performance-excel\')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
                             </div>
                         </div>
                         <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
@@ -1978,8 +1978,8 @@
                         <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
                             <div class="card-title"><h3>1. Risk Summary</h3><p>Complete statistical volatility overview</p></div>
                             <div style="display:flex;gap:10px;">
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/risk-pdf')"><i data-lucide="download"></i> Download PDF</button>
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/risk-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'risk-pdf\')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'risk-excel\')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
                             </div>
                         </div>
                         <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
@@ -2076,8 +2076,8 @@
                         <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
                             <div class="card-title"><h3>1. SIP Summary</h3><p>Platform systematic investment health summary</p></div>
                             <div style="display:flex;gap:10px;">
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/sip-pdf')"><i data-lucide="download"></i> Download PDF</button>
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/sip-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'sip-pdf\')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'sip-excel\')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
                             </div>
                         </div>
                         <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
@@ -2175,8 +2175,8 @@
                         <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
                             <div class="card-title"><h3>1. Tax Summary</h3><p>Aggregated capital gains tax liability breakdown</p></div>
                             <div style="display:flex;gap:10px;">
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/tax-pdf')"><i data-lucide="download"></i> Download PDF</button>
-                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/tax-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'tax-pdf\')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="triggerDownload(\'tax-excel\')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
                             </div>
                         </div>
                         <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
@@ -2269,27 +2269,27 @@
                                 <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Raw CSV Files (.csv)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/raw-csv')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'raw-csv\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Processed CSV Files (.csv)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/processed-csv')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'processed-csv\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Excel Dataset (.xlsx)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/excel-data')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'excel-data\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• ZIP Archive (.zip)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/zip-archive')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'zip-archive\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Sample Dataset (.csv)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sample-csv')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'sample-csv\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;">
                                         <span>• Data Dictionary (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/dictionary-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'dictionary-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                 </div>
                             </div>
@@ -2302,19 +2302,19 @@
                                 <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• SQLite Database (.db)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sqlite-db')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'sqlite-db\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• SQL Schema (.sql)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sql-schema')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'sql-schema\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• ER Diagram (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/er-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'er-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;">
                                         <span>• Database Backup (.zip)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/db-backup')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'db-backup\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                 </div>
                             </div>
@@ -2327,27 +2327,27 @@
                                 <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• EDA Notebook (.ipynb)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/eda-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'eda-ipynb\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Monte Carlo Simulation (.ipynb)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/montecarlo-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'montecarlo-ipynb\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Markowitz Optimization (.ipynb)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/markowitz-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'markowitz-ipynb\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Risk Analysis (.ipynb)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/risk-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'risk-ipynb\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• HTML Version (.html)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/notebooks-html')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'notebooks-html\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;">
                                         <span>• PDF Version (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/notebooks-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'notebooks-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                 </div>
                             </div>
@@ -2360,19 +2360,19 @@
                                 <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Power BI Dashboard (.pbix)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-pbix')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'powerbi-pbix\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Power BI Template (.pbit)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-pbit')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'powerbi-pbit\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Power BI Report (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'powerbi-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;">
                                         <span>• Dashboard Screenshots (.png)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-screenshots')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'powerbi-screenshots\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                 </div>
                             </div>
@@ -2385,27 +2385,27 @@
                                 <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Final Project Report (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/project-report-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'project-report-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Performance Report (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/performance-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'performance-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Risk Report (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/risk-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'risk-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• SIP Analysis Report (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sip-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'sip-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Tax Report (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/tax-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'tax-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;">
                                         <span>• Executive Summary (.pdf)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/summary-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'summary-pdf\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                 </div>
                             </div>
@@ -2418,35 +2418,35 @@
                                 <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• ETL Pipeline (.py)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/etl-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'etl-py\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Data Cleaning (.py)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/clean-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'clean-py\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Risk Analytics (.py)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/risk-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'risk-py\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Monte Carlo (.py)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/montecarlo-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'montecarlo-py\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Markowitz (.py)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/markowitz-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'markowitz-py\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Utility Functions (.py)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/utils-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'utils-py\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                                         <span>• Complete Source Code (.zip)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/src-zip')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'src-zip\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                     <div style="display:flex;justify-content:space-between;align-items:center;">
                                         <span>• Requirements (.txt)</span>
-                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/req-txt')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerDownload(\'req-txt\')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
                                     </div>
                                 </div>
                             </div>
