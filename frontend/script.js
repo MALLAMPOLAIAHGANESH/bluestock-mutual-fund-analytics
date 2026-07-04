@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // AUM Growth Chart
         new ApexCharts(document.querySelector("#aum-growth-chart"), {
             series: [{ name: 'AUM', data: [120000, 145000, 138000, 160000, 172000, 195000, 185000, 210000, 225000, 245678] }],
-            chart: { type: 'area', height: 280, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+            chart: { type: 'area', height: 300, toolbar: { show: false }, foreColor: chartTheme.foreColor },
             colors: ['#8B5CF6'],
             fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.45, opacityTo: 0.05, stops: [0, 95, 100] } },
             dataLabels: { enabled: false },
@@ -176,11 +176,24 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip: { theme: chartTheme.tooltipTheme }
         }).render();
 
-        // Category Donut
-        new ApexCharts(document.querySelector("#category-donut-chart"), {
-            series: [65.4, 18.7, 10.2, 5.7],
+        // Fund Distribution Donut
+        new ApexCharts(document.querySelector("#fund-dist-donut"), {
+            series: [40, 25, 15, 12, 8],
             chart: { type: 'donut', height: 220, foreColor: chartTheme.foreColor },
-            labels: ['Equity','Debt','Hybrid','Solution Oriented'],
+            labels: ['Flexi Cap','Large Cap','Mid Cap','Small Cap','Hybrid'],
+            colors: ['#3B82F6','#22C55E','#F4B400','#8B5CF6','#EF4444'],
+            stroke: { show: false },
+            legend: { position: 'bottom', fontSize: '11px', markers: { radius: 12 } },
+            dataLabels: { enabled: false },
+            plotOptions: { pie: { donut: { size: '72%' } } },
+            tooltip: { theme: chartTheme.tooltipTheme }
+        }).render();
+
+        // Portfolio Allocation Donut
+        new ApexCharts(document.querySelector("#portfolio-alloc-donut"), {
+            series: [65, 20, 10, 5],
+            chart: { type: 'donut', height: 220, foreColor: chartTheme.foreColor },
+            labels: ['Equity','Debt','Gold','Cash'],
             colors: ['#3B82F6','#22C55E','#F4B400','#8B5CF6'],
             stroke: { show: false },
             legend: { position: 'bottom', fontSize: '11px', markers: { radius: 12 } },
@@ -193,8 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sparkData = {
             nifty: [24100,24350,24200,24500,24700,24650,24834],
             sensex: [80100,80500,80300,81000,81400,81200,81721],
-            bank: [53900,54200,54000,54600,54900,54800,55187],
-            vix: [14.2,13.8,14.5,13.2,13.0,12.8,12.64]
+            largecap: [17800,18100,18000,18250,18400,18300,18450],
+            midcap: [21100,21500,21300,21800,22050,21900,22120],
+            smallcap: [16100,15900,15800,15700,15750,15600,15640]
         };
         const mkSpark = (id, data, pos) => {
             new ApexCharts(document.querySelector(id), {
@@ -204,8 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         mkSpark("#nifty-sparkline", sparkData.nifty, true);
         mkSpark("#sensex-sparkline", sparkData.sensex, true);
-        mkSpark("#bank-sparkline", sparkData.bank, true);
-        mkSpark("#vix-sparkline", sparkData.vix, false);
+        mkSpark("#largecap-sparkline", sparkData.largecap, true);
+        mkSpark("#midcap-sparkline", sparkData.midcap, true);
+        mkSpark("#smallcap-sparkline", sparkData.smallcap, false);
 
         // Risk Gauge
         new ApexCharts(document.querySelector("#risk-gauge-chart"), {
@@ -213,19 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
             plotOptions: { radialBar: { startAngle: -135, endAngle: 135, dataLabels: { name: { fontSize: '13px', color: '#94A3B8', offsetY: 76 }, value: { offsetY: 0, fontSize: '28px', color: '#fff', fontWeight: 'bold', formatter: v => `${v}` } }, track: { background: 'rgba(255,255,255,0.05)', strokeWidth: '100%' } } },
             fill: { type: 'gradient', gradient: { shade: 'dark', type: 'horizontal', gradientToColors: ['#F4B400'], stops: [0, 100] } },
             colors: ['#22C55E'], labels: ['Moderate Risk']
-        }).render();
-
-        // SIP Bar
-        new ApexCharts(document.querySelector("#sip-trend-chart"), {
-            series: [{ name: 'SIP Volume', data: [6500,7200,6800,7900,8400,9200,8900,9700,10500,10200] }],
-            chart: { type: 'bar', height: 240, toolbar: { show: false }, foreColor: chartTheme.foreColor },
-            colors: ['#3B82F6'],
-            plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
-            dataLabels: { enabled: false },
-            xaxis: { categories: ['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'], axisBorder:{show:false}, axisTicks:{show:false} },
-            yaxis: { labels: { formatter: v => `₹ ${v} Cr` } },
-            grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
-            tooltip: { theme: chartTheme.tooltipTheme }
         }).render();
     }
 
@@ -235,11 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!el) return;
         new ApexCharts(el, {
             series: [
-                { name: 'Quant Flexi Cap', data: [12,18,14,22,28,26,32,28,35] },
-                { name: 'Parag Parikh', data: [10,14,12,16,20,22,24,22,25] },
-                { name: 'Mirae Large Cap', data: [8,12,10,14,18,16,20,19,22] }
+                { name: 'Quant Flexi Cap (NAV)', data: [120,135,130,145,152,150,158,154,162] },
+                { name: 'Parag Parikh Flexi (NAV)', data: [110,122,118,128,135,132,140,136,144] },
+                { name: 'Mirae Large Cap (NAV)', data: [100,108,105,114,120,118,124,122,128] }
             ],
-            chart: { type: 'line', height: 260, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+            chart: { type: 'line', height: 280, toolbar: { show: false }, foreColor: chartTheme.foreColor },
             colors: ['#3B82F6','#22C55E','#8B5CF6'],
             stroke: { curve: 'smooth', width: 2.5 },
             dataLabels: { enabled: false },
@@ -248,6 +250,41 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip: { theme: chartTheme.tooltipTheme },
             legend: { position: 'top' }
         }).render();
+
+        // Drawdown Timeline chart for Dashboard
+        const ddEl = document.querySelector("#dashboard-drawdown-chart");
+        if (ddEl) {
+            new ApexCharts(ddEl, {
+                series: [{ name: 'Drawdown', data: [0,-2.1,-5.4,-8.2,-12.6,-18.6,-14.2,-9.8,-6.1,-3.4,-1.2,0] }],
+                chart: { type: 'area', height: 250, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#EF4444'],
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05 } },
+                stroke: { curve: 'smooth', width: 2.5 },
+                dataLabels: { enabled: false },
+                xaxis: { categories: ['Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25'] },
+                yaxis: { labels: { formatter: v => `${v}%` } },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+
+        // Scatter plot (Risk vs Return) for Dashboard
+        const scatEl = document.querySelector("#dashboard-scatter-chart");
+        if (scatEl) {
+            new ApexCharts(scatEl, {
+                series: [
+                    { name: 'High Return / High Risk', data: [[18.2, 28.3], [22.8, 31.2]] },
+                    { name: 'Moderate Return / Mod Risk', data: [[12.4, 24.6], [14.1, 22.4]] },
+                    { name: 'Stable Return / Low Risk', data: [[10.2, 16.7], [11.4, 19.5]] }
+                ],
+                chart: { type: 'scatter', height: 180, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#EF4444', '#3B82F6', '#22C55E'],
+                xaxis: { title: { text: 'Risk (σ)', style: { color: '#94A3B8', fontSize: '10px' } } },
+                yaxis: { title: { text: 'Return (%)', style: { color: '#94A3B8', fontSize: '10px' } } },
+                grid: { borderColor: chartTheme.gridColor },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
     }
 
     // === RISK page drawdown ===
