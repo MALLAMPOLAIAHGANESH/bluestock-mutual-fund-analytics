@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderDashboardChart();
                 break;
             case 'risk':
-                renderDrawdownChart();
+                renderRiskPageCharts();
                 break;
             case 'markowitz':
                 renderFrontierChart();
@@ -382,6 +382,111 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip: { theme: chartTheme.tooltipTheme }
         }).render();
     }
+
+    // === RISK page charts ===
+    function renderRiskPageCharts() {
+        // 4. Risk vs Return Scatter
+        const scatEl = document.querySelector("#risk-scatter-chart");
+        if (scatEl) {
+            new ApexCharts(scatEl, {
+                series: [
+                    { name: 'Equity Funds', data: [[18.2, 28.3, 18], [22.8, 31.2, 11], [12.4, 24.6, 45]] },
+                    { name: 'Hybrid Funds', data: [[10.2, 16.7, 15]] },
+                    { name: 'Debt Funds', data: [[3.5, 7.4, 8]] }
+                ],
+                chart: { type: 'bubble', height: 250, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#3B82F6', '#F4B400', '#22C55E'],
+                xaxis: { title: { text: 'Risk (Volatility %)', style: { color: '#94A3B8' } }, tickAmount: 6 },
+                yaxis: { title: { text: 'Return (%)', style: { color: '#94A3B8' } } },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+
+        // 5. Volatility / Returns Distribution
+        const distEl = document.querySelector("#vol-distribution-chart");
+        if (distEl) {
+            new ApexCharts(distEl, {
+                series: [{ name: 'Return Frequency', data: [1, 2, 5, 12, 25, 40, 28, 14, 6, 2, 1] }],
+                chart: { type: 'area', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#8B5CF6'],
+                stroke: { curve: 'smooth', width: 2 },
+                xaxis: { categories: ['-5%','-3%','-1%','0%','1%','2%','3%','4%','5%','6%','7%'] },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+
+        // 6. Drawdown Timeline
+        const ddEl = document.querySelector("#drawdown-timeline-chart");
+        if (ddEl) {
+            new ApexCharts(ddEl, {
+                series: [{ name: 'Drawdown', data: [0,-1.5,-4.2,-6.8,-11.4,-18.6,-15.4,-11.2,-7.5,-4.1,-1.8,0] }],
+                chart: { type: 'area', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#EF4444'],
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05 } },
+                stroke: { curve: 'smooth', width: 2 },
+                xaxis: { categories: ['Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25'] },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+    }
+
+    // === Navigation to Fund Details (Explorer Page) ===
+    let explorerChartInstance = null;
+    window.navigateToDetails = function(fundName) {
+        const panel = document.getElementById('fund-details-panel');
+        if (!panel) return;
+        panel.style.display = 'flex';
+
+        // Update Text Fields dynamically
+        document.getElementById('detail-fund-title').textContent = fundName;
+        const subtitle = document.getElementById('detail-fund-subtitle');
+        const mngr = document.getElementById('det-manager');
+        const exp = document.getElementById('det-expense');
+        const bnch = document.getElementById('det-bench');
+
+        let dataPoints = [];
+        if (fundName.includes('Quant')) {
+            subtitle.textContent = "Quant Mutual Fund | Equity - Flexi Cap";
+            mngr.textContent = "Sandeep Tandon";
+            exp.textContent = "0.72%";
+            bnch.textContent = "NIFTY 500 TRI";
+            dataPoints = [100, 115, 110, 125, 138, 134, 148, 142, 162.45];
+        } else if (fundName.includes('Parag')) {
+            subtitle.textContent = "Parag Parikh Mutual Fund | Equity - Flexi Cap";
+            mngr.textContent = "Rajeev Thakkar";
+            exp.textContent = "0.65%";
+            bnch.textContent = "NIFTY 500 TRI";
+            dataPoints = [100, 108, 105, 114, 122, 120, 128, 125, 144.20];
+        } else {
+            subtitle.textContent = "Mirae Asset Mutual Fund | Equity - Large Cap";
+            mngr.textContent = "Harshad Borawake";
+            exp.textContent = "0.82%";
+            bnch.textContent = "NIFTY 100 TRI";
+            dataPoints = [100, 105, 103, 110, 115, 112, 120, 118, 128.85];
+        }
+
+        // Render Fund Specific Growth Chart
+        if (explorerChartInstance) {
+            explorerChartInstance.destroy();
+        }
+        explorerChartInstance = new ApexCharts(document.querySelector("#explorer-growth-chart"), {
+            series: [{ name: 'NAV', data: dataPoints }],
+            chart: { type: 'area', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+            colors: ['#3B82F6'],
+            stroke: { curve: 'smooth', width: 2 },
+            fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.3, opacityTo: 0.05 } },
+            xaxis: { categories: ['Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25'] },
+            grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+            tooltip: { theme: chartTheme.tooltipTheme }
+        });
+        explorerChartInstance.render();
+
+        // Scroll to the detail section
+        panel.scrollIntoView({ behavior: 'smooth' });
+    };
 
     // =============================================
     // 6. INITIAL RENDER — Overview page
