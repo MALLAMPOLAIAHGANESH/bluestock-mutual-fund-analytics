@@ -9,40 +9,14 @@ from app.core.logging import setup_logging
 from app.core.database import Base, engine, SessionLocal
 from app.api.v1.endpoints import router as api_router
 from app.etl.pipeline import ETLPipeline
+from contextlib import asynccontextmanager
 
 # 1. Setup logging
 setup_logging()
 
-# 2. Initialize FastAPI
-app = FastAPI(
-    title=settings.PROJECT_NAME,
-    description="Enterprise-grade Clean Architecture Mutual Fund Analytics API featuring portfolio optimization and risk simulations.",
-    version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc"
-)
-
-# 3. Add CORS Middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Restrict to frontend domain in production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# 4. Exception Handlers
-@app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    logger.warning(f"Request validation failure on {request.url.path}: {exc.errors()}")
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": exc.errors(), "body": exc.body}
-    )
-
-# 5. Startup Event: Setup DB and Run ETL
-@app.on_event("startup")
-def on_startup():
+# 2. Define lifespan context manager
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     logger.info("Initializing database schemas...")
     Base.metadata.create_all(bind=engine)
     
@@ -69,6 +43,35 @@ def on_startup():
         logger.error(f"Startup task failed: {e}")
     finally:
         db.close()
+    yield
+
+# 3. Initialize FastAPI with lifespan
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    description="Enterprise-grade Clean Architecture Mutual Fund Analytics API featuring portfolio optimization and risk simulations.",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    lifespan=lifespan
+)
+
+# 4. Add CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Restrict to frontend domain in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 5. Exception Handlers
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    logger.warning(f"Request validation failure on {request.url.path}: {exc.errors()}")
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detail": exc.errors(), "body": exc.body}
+    )
 
 # 6. Include Router
 app.include_router(api_router, prefix=settings.API_V1_STR)

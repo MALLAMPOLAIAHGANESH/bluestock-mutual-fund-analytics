@@ -1,5 +1,5 @@
 # backend/app/database/schemas.py
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import date, datetime
 from typing import List, Optional
 
@@ -13,8 +13,7 @@ class FundHouseCreate(FundHouseBase):
 class FundHouse(FundHouseBase):
     id: int
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Category ---
 class CategoryBase(BaseModel):
@@ -23,8 +22,7 @@ class CategoryBase(BaseModel):
 class Category(CategoryBase):
     id: int
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Risk Metrics ---
 class RiskMetricsBase(BaseModel):
@@ -44,8 +42,7 @@ class RiskMetricsBase(BaseModel):
 class RiskMetrics(RiskMetricsBase):
     amfi_code: int
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Returns ---
 class ReturnsBase(BaseModel):
@@ -57,8 +54,7 @@ class ReturnsBase(BaseModel):
 class Returns(ReturnsBase):
     amfi_code: int
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Scheme ---
 class SchemeBase(BaseModel):
@@ -85,8 +81,7 @@ class Scheme(SchemeBase):
     risk_metrics: Optional[RiskMetrics] = None
     returns: Optional[Returns] = None
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- NAV History ---
 class NAVHistoryBase(BaseModel):
@@ -100,8 +95,7 @@ class NAVHistory(NAVHistoryBase):
     id: int
     amfi_code: int
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Investor ---
 class InvestorBase(BaseModel):
@@ -111,8 +105,7 @@ class InvestorBase(BaseModel):
     annual_income_lakh: Optional[float] = None
 
 class Investor(InvestorBase):
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Portfolio Holdings ---
 class PortfolioHoldingBase(BaseModel):
@@ -127,8 +120,7 @@ class PortfolioHolding(PortfolioHoldingBase):
     portfolio_id: int
     scheme: Scheme
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Portfolio ---
 class PortfolioBase(BaseModel):
@@ -144,8 +136,7 @@ class Portfolio(PortfolioBase):
     created_at: datetime
     holdings: List[PortfolioHolding]
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Portfolio Optimization ---
 class PortfolioOptimizeRequest(BaseModel):
@@ -172,8 +163,7 @@ class Transaction(TransactionBase):
     id: int
     scheme: Scheme
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Dashboard Summary ---
 class DashboardSummary(BaseModel):
