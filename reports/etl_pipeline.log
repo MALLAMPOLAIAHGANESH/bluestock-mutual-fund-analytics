@@ -1,0 +1,167 @@
+12:26:20  INFO      Bluestock MF Capstone — ETL Pipeline
+12:26:20  INFO      Root: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone
+12:26:20  INFO      ============================================================
+12:26:20  INFO      STAGE 1 — EXTRACT
+12:26:20  INFO      ============================================================
+12:26:20  INFO        OK    fund_master                       40 rows  15 cols
+12:26:21  INFO        OK    nav_history                    46000 rows  3 cols
+12:26:21  INFO        OK    aum_by_fund_house                 90 rows  5 cols
+12:26:21  INFO        OK    monthly_sip_inflows               48 rows  6 cols
+12:26:21  INFO        OK    category_inflows                 144 rows  3 cols
+12:26:21  INFO        OK    industry_folio_count              21 rows  6 cols
+12:26:21  INFO        OK    scheme_performance                40 rows  19 cols
+12:26:21  INFO        OK    investor_transactions          32778 rows  13 cols
+12:26:21  INFO        OK    portfolio_holdings               322 rows  8 cols
+12:26:21  INFO        OK    benchmark_indices               8050 rows  3 cols
+12:26:21  INFO      ============================================================
+12:26:21  INFO      STAGE 2 — TRANSFORM
+12:26:21  INFO      ============================================================
+12:26:21  INFO        OK    fund_master                       40 ->     40 rows
+12:26:21  INFO        OK    nav_history                    46000 ->  46000 rows
+12:26:21  INFO        OK    aum_by_fund_house                 90 ->     90 rows
+12:26:21  INFO        OK    monthly_sip_inflows               48 ->     48 rows
+12:26:21  INFO        OK    category_inflows                 144 ->    144 rows
+12:26:21  INFO        OK    industry_folio_count              21 ->     21 rows
+12:26:21  INFO        OK    scheme_performance                40 ->     40 rows
+12:26:21  INFO        OK    investor_transactions          32778 ->  32778 rows
+12:26:21  INFO        OK    portfolio_holdings               322 ->    322 rows
+12:26:21  ERROR       FAIL  benchmark_indices — 'value'
+12:26:21  INFO      ============================================================
+12:26:21  INFO      STAGE 3 — VALIDATE
+12:26:21  INFO      ============================================================
+12:26:21  INFO        OK    fund_master validation passed (40 records)
+12:26:21  INFO        OK    nav_history validation passed (46000 rows)
+12:26:21  INFO        OK    scheme_performance validation passed (40 records)
+12:26:21  INFO        OK    investor_transactions validation passed (32778 rows)
+12:26:21  INFO      ============================================================
+12:26:21  INFO      STAGE 4 — LOAD  (SQLite: DRY RUN)
+12:26:21  INFO      ============================================================
+12:26:21  INFO        DRY RUN — skipping database write
+12:26:21  INFO      ============================================================
+12:26:21  INFO      STAGE 5 — REPORT
+12:26:21  INFO      ============================================================
+12:26:21  INFO        Elapsed   : 0.65 seconds
+12:26:21  INFO        Issues    : 0 errors, 0 warnings
+12:26:21  INFO        Audit log : C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\reports\etl_audit.json
+12:26:21  INFO        DB path   : C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db
+12:26:21  INFO      ============================================================
+12:26:21  INFO      ETL COMPLETE
+12:26:21  INFO      ============================================================
+12:28:01  INFO      Bluestock MF Capstone — ETL Pipeline
+12:28:01  INFO      Root: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone
+12:28:01  INFO      ============================================================
+12:28:01  INFO      STAGE 1 — EXTRACT
+12:28:01  INFO      ============================================================
+12:28:01  INFO        OK    fund_master                       40 rows  15 cols
+12:28:01  INFO        OK    nav_history                    46000 rows  3 cols
+12:28:01  INFO        OK    aum_by_fund_house                 90 rows  5 cols
+12:28:01  INFO        OK    monthly_sip_inflows               48 rows  6 cols
+12:28:01  INFO        OK    category_inflows                 144 rows  3 cols
+12:28:01  INFO        OK    industry_folio_count              21 rows  6 cols
+12:28:01  INFO        OK    scheme_performance                40 rows  19 cols
+12:28:01  INFO        OK    investor_transactions          32778 rows  13 cols
+12:28:01  INFO        OK    portfolio_holdings               322 rows  8 cols
+12:28:01  INFO        OK    benchmark_indices               8050 rows  3 cols
+12:28:01  INFO      ============================================================
+12:28:01  INFO      STAGE 2 — TRANSFORM
+12:28:01  INFO      ============================================================
+12:28:01  INFO        OK    fund_master                       40 ->     40 rows
+12:28:01  INFO        OK    nav_history                    46000 ->  46000 rows
+12:28:01  INFO        OK    aum_by_fund_house                 90 ->     90 rows
+12:28:01  INFO        OK    monthly_sip_inflows               48 ->     48 rows
+12:28:01  INFO        OK    category_inflows                 144 ->    144 rows
+12:28:01  INFO        OK    industry_folio_count              21 ->     21 rows
+12:28:01  INFO        OK    scheme_performance                40 ->     40 rows
+12:28:01  INFO        OK    investor_transactions          32778 ->  32778 rows
+12:28:01  INFO        OK    portfolio_holdings               322 ->    322 rows
+12:28:01  INFO        OK    benchmark_indices               8050 ->   8050 rows
+12:28:01  INFO      ============================================================
+12:28:01  INFO      STAGE 3 — VALIDATE
+12:28:01  INFO      ============================================================
+12:28:01  INFO        OK    fund_master validation passed (40 records)
+12:28:01  INFO        OK    nav_history validation passed (46000 rows)
+12:28:01  INFO        OK    scheme_performance validation passed (40 records)
+12:28:01  INFO        OK    investor_transactions validation passed (32778 rows)
+12:28:01  INFO      ============================================================
+12:28:01  INFO      STAGE 4 — LOAD  (SQLite: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db)
+12:28:01  INFO      ============================================================
+12:28:01  ERROR       FAIL  fund_master — foreign key mismatch - "portfolio_holdings" referencing "fund_master"
+12:28:01  INFO        OK    nav_history                    46000 rows loaded
+12:28:01  INFO        OK    aum_by_fund_house                 90 rows loaded
+12:28:02  INFO        OK    monthly_sip_inflows               48 rows loaded
+12:28:02  INFO        OK    category_inflows                 144 rows loaded
+12:28:02  INFO        OK    industry_folio_count              21 rows loaded
+12:28:02  INFO        OK    scheme_performance                40 rows loaded
+12:28:02  ERROR       FAIL  investor_transactions — too many SQL variables
+12:28:02  INFO        OK    portfolio_holdings               322 rows loaded
+12:28:02  INFO        OK    benchmark_indices               8050 rows loaded
+12:28:02  INFO        DB saved: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db  (1.8 MB)
+12:28:02  INFO      ============================================================
+12:28:02  INFO      STAGE 5 — REPORT
+12:28:02  INFO      ============================================================
+12:28:02  INFO        Elapsed   : 1.05 seconds
+12:28:02  INFO        Issues    : 0 errors, 0 warnings
+12:28:02  INFO        Audit log : C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\reports\etl_audit.json
+12:28:02  INFO        DB path   : C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db
+12:28:02  INFO      ============================================================
+12:28:02  INFO      ETL COMPLETE
+12:28:02  INFO      ============================================================
+12:31:33  INFO      Bluestock MF Capstone — ETL Pipeline
+12:31:33  INFO      Root: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone
+12:31:33  INFO      ============================================================
+12:31:33  INFO      STAGE 1 — EXTRACT
+12:31:33  INFO      ============================================================
+12:31:33  INFO        OK    fund_master                       40 rows  15 cols
+12:31:33  INFO        OK    nav_history                    46000 rows  3 cols
+12:31:33  INFO        OK    aum_by_fund_house                 90 rows  5 cols
+12:31:33  INFO        OK    monthly_sip_inflows               48 rows  6 cols
+12:31:33  INFO        OK    category_inflows                 144 rows  3 cols
+12:31:33  INFO        OK    industry_folio_count              21 rows  6 cols
+12:31:33  INFO        OK    scheme_performance                40 rows  19 cols
+12:31:33  INFO        OK    investor_transactions          32778 rows  13 cols
+12:31:33  INFO        OK    portfolio_holdings               322 rows  8 cols
+12:31:33  INFO        OK    benchmark_indices               8050 rows  3 cols
+12:31:33  INFO      ============================================================
+12:31:33  INFO      STAGE 2 — TRANSFORM
+12:31:33  INFO      ============================================================
+12:31:33  INFO        OK    fund_master                       40 ->     40 rows
+12:31:36  INFO        OK    nav_history                    46000 ->  46000 rows
+12:31:36  INFO        OK    aum_by_fund_house                 90 ->     90 rows
+12:31:36  INFO        OK    monthly_sip_inflows               48 ->     48 rows
+12:31:36  INFO        OK    category_inflows                 144 ->    144 rows
+12:31:36  INFO        OK    industry_folio_count              21 ->     21 rows
+12:31:36  INFO        OK    scheme_performance                40 ->     40 rows
+12:31:36  INFO        OK    investor_transactions          32778 ->  32778 rows
+12:31:36  INFO        OK    portfolio_holdings               322 ->    322 rows
+12:31:37  INFO        OK    benchmark_indices               8050 ->   8050 rows
+12:31:37  INFO      ============================================================
+12:31:37  INFO      STAGE 3 — VALIDATE
+12:31:37  INFO      ============================================================
+12:31:37  INFO        OK    fund_master validation passed (40 records)
+12:31:37  INFO        OK    nav_history validation passed (46000 rows)
+12:31:37  INFO        OK    scheme_performance validation passed (40 records)
+12:31:37  INFO        OK    investor_transactions validation passed (32778 rows)
+12:31:37  INFO      ============================================================
+12:31:37  INFO      STAGE 4 — LOAD  (SQLite: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db)
+12:31:37  INFO      ============================================================
+12:31:37  INFO        OK    fund_master                       40 rows loaded
+12:31:37  INFO        OK    nav_history                    46000 rows loaded
+12:31:37  INFO        OK    scheme_performance                40 rows loaded
+12:31:37  INFO        OK    aum_by_fund_house                 90 rows loaded
+12:31:37  INFO        OK    monthly_sip_inflows               48 rows loaded
+12:31:37  INFO        OK    category_inflows                 144 rows loaded
+12:31:37  INFO        OK    industry_folio_count              21 rows loaded
+12:31:38  INFO        OK    investor_transactions          32778 rows loaded
+12:31:39  INFO        OK    portfolio_holdings               322 rows loaded
+12:31:39  INFO        OK    benchmark_indices               8050 rows loaded
+12:31:40  INFO        DB saved: C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db  (5.4 MB)
+12:31:40  INFO      ============================================================
+12:31:40  INFO      STAGE 5 — REPORT
+12:31:40  INFO      ============================================================
+12:31:40  INFO        Elapsed   : 7.48 seconds
+12:31:40  INFO        Issues    : 0 errors, 0 warnings
+12:31:40  INFO        Audit log : C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\reports\etl_audit.json
+12:31:40  INFO        DB path   : C:\Users\polai\OneDrive\Desktop\Mutual Funds and Stock Market concepts\bluestock_mf_capstone\data\bluestock_mf.db
+12:31:40  INFO      ============================================================
+12:31:40  INFO      ETL COMPLETE
+12:31:40  INFO      ============================================================
