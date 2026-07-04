@@ -154,8 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'montecarlo':
                 renderMonteCarloChart();
                 break;
+            case 'report-perf':
+                renderPerformanceReportCharts();
+                break;
             case 'report-sip':
-                renderSipReportChart();
+                renderSipReportCharts();
                 break;
         }
     }
@@ -381,21 +384,87 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // === SIP Report chart ===
-    function renderSipReportChart() {
-        const el = document.querySelector("#sip-report-chart");
-        if (!el) return;
-        new ApexCharts(el, {
-            series: [{ name: 'SIP Inflows', data: [14500,15200,16100,17800,18400,19200,20100,20800,21500] }],
-            chart: { type: 'bar', height: 260, toolbar: { show: false }, foreColor: chartTheme.foreColor },
-            colors: ['#22C55E'],
-            plotOptions: { bar: { borderRadius: 6, columnWidth: '45%' } },
-            dataLabels: { enabled: false },
-            xaxis: { categories: ['Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25'] },
-            yaxis: { labels: { formatter: v => `₹ ${v} Cr` } },
-            grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
-            tooltip: { theme: chartTheme.tooltipTheme }
-        }).render();
+    // === Performance Report Charts ===
+    function renderPerformanceReportCharts() {
+        // 4. NAV Performance Chart
+        const navEl = document.querySelector("#report-nav-chart");
+        if (navEl) {
+            new ApexCharts(navEl, {
+                series: [{ name: 'Portfolio Growth', data: [100, 112, 108, 122, 134, 130, 142, 138, 154] }],
+                chart: { type: 'area', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#3B82F6'],
+                stroke: { curve: 'smooth', width: 2 },
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.3, opacityTo: 0.05 } },
+                xaxis: { categories: ['Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25'] },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+
+        // 5. Annual Returns Chart
+        const annEl = document.querySelector("#report-annual-chart");
+        if (annEl) {
+            new ApexCharts(annEl, {
+                series: [
+                    { name: 'Portfolio Return', data: [18.2, 24.3, 31.2, 22.1, 14.8] },
+                    { name: 'Nifty 50 TRI', data: [15.4, 18.2, 22.4, 17.5, 12.1] }
+                ],
+                chart: { type: 'bar', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#22C55E', '#94A3B8'],
+                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
+                xaxis: { categories: ['Large Cap','Mid Cap','Small Cap','Flexi Cap','Hybrid'] },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+
+        // 7. Rolling Returns distribution
+        const rollEl = document.querySelector("#report-rolling-chart");
+        if (rollEl) {
+            new ApexCharts(rollEl, {
+                series: [{ name: 'Rolling Return %', data: [12.4, 14.8, 18.2, 22.4, 25.1, 21.8, 19.5, 16.2, 14.1] }],
+                chart: { type: 'line', height: 190, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#8B5CF6'],
+                stroke: { curve: 'smooth', width: 2 },
+                xaxis: { categories: ['M1','M2','M3','M4','M5','M6','M7','M8','M9'] },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+    }
+
+    // === SIP Analysis Report Charts ===
+    function renderSipReportCharts() {
+        // 2. Monthly SIP Trend
+        const mEl = document.querySelector("#report-sip-monthly-chart");
+        if (mEl) {
+            new ApexCharts(mEl, {
+                series: [{ name: 'SIP Inflow', data: [14500, 15200, 16100, 17800, 18400, 19200, 20100, 20800, 21500] }],
+                chart: { type: 'bar', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#22C55E'],
+                plotOptions: { bar: { borderRadius: 4, columnWidth: '45%' } },
+                xaxis: { categories: ['Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25'] },
+                yaxis: { labels: { formatter: v => `₹${v/1000}k Cr` } },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
+
+        // 3. Yearly SIP Growth
+        const yEl = document.querySelector("#report-sip-yearly-chart");
+        if (yEl) {
+            new ApexCharts(yEl, {
+                series: [{ name: 'Yearly SIP Volume', data: [8.2, 10.4, 12.4] }],
+                chart: { type: 'area', height: 220, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#8B5CF6'],
+                stroke: { curve: 'smooth', width: 2 },
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.3, opacityTo: 0.05 } },
+                xaxis: { categories: ['FY23-24','FY24-25','FY25-26'] },
+                yaxis: { labels: { formatter: v => `₹${v}L Cr` } },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
     }
 
     // === RISK page charts ===

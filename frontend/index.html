@@ -1797,55 +1797,458 @@
 
                 <!-- ===== PAGE: PERFORMANCE REPORT ===== -->
                 <div class="page-panel" data-page="report-perf">
-                    <div class="welcome-section"><div class="welcome-text"><h1>📈 Performance Report</h1><p>Comprehensive fund performance analytics across time periods.</p></div></div>
-                    <div class="table-card"><div class="card-header"><div class="card-title"><h3>Fund Returns Summary</h3><p>Annualized returns comparison by category</p></div></div>
-                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Category</th><th>1Y Avg Return</th><th>3Y Avg Return</th><th>5Y Avg Return</th><th>Benchmark Beat %</th></tr></thead><tbody>
-                            <tr><td>Large Cap</td><td class="val-green">18.5%</td><td class="val-green">14.2%</td><td class="val-green">12.8%</td><td class="val-green">68%</td></tr>
-                            <tr><td>Mid Cap</td><td class="val-green">24.3%</td><td class="val-green">18.7%</td><td class="val-green">16.1%</td><td class="val-green">72%</td></tr>
-                            <tr><td>Small Cap</td><td class="val-green">31.2%</td><td class="val-green">22.4%</td><td class="val-green">19.5%</td><td class="val-green">58%</td></tr>
-                            <tr><td>Flexi Cap</td><td class="val-green">22.1%</td><td class="val-green">17.3%</td><td class="val-green">15.2%</td><td class="val-green">75%</td></tr>
-                            <tr><td>Hybrid</td><td class="val-green">14.8%</td><td class="val-green">11.6%</td><td class="val-green">10.4%</td><td class="val-green">82%</td></tr>
-                        </tbody></table></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>📈 Performance Report</h1>
+                            <p>Comprehensive fund performance analytics across time periods.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1. Report Summary & 12. Download -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+                            <div class="card-title"><h3>1. Report Summary</h3><p>Platform wide CAGR & return status summary</p></div>
+                            <div style="display:flex;gap:10px;">
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/performance-pdf')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/performance-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                            </div>
+                        </div>
+                        <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
+                            This performance report aggregates annualized returns and historical trends across all registered mutual fund schemes. The active portfolio has registered a net outperformance of <strong>+3.20%</strong> against the Nifty 500 benchmark index over the trailing 12-month period, driven largely by exposures in High-Growth Flexi Cap and Small Cap allocations.
+                        </div>
+                    </div>
+
+                    <!-- 2. Performance KPIs -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card green">
+                            <div class="kpi-header"><span>Average 1Y Return</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">22.1%</span><span class="kpi-change positive">+4.2% beat</span></div>
+                        </div>
+                        <div class="kpi-card blue">
+                            <div class="kpi-header"><span>Average 3Y CAGR</span><div class="kpi-icon"><i data-lucide="activity"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">17.3%</span><span class="kpi-change positive">+2.1% beat</span></div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-header"><span>Average 5Y CAGR</span><div class="kpi-icon"><i data-lucide="shield-check"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">15.2%</span><span class="kpi-change positive">+1.8% beat</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Fund Performance Table -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>3. Fund Performance Table</h3><p>Comprehensive returns summary by category</p></div></div>
+                        <div class="table-wrapper" style="padding:0 15px 15px 15px;">
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>1Y Avg Return</th>
+                                        <th>3Y Avg Return</th>
+                                        <th>5Y Avg Return</th>
+                                        <th>Benchmark Beat %</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Large Cap</td><td class="val-green">18.5%</td><td class="val-green">14.2%</td><td class="val-green">12.8%</td><td>68%</td></tr>
+                                    <tr><td>Mid Cap</td><td class="val-green">24.3%</td><td class="val-green">18.7%</td><td class="val-green">16.1%</td><td>72%</td></tr>
+                                    <tr><td>Small Cap</td><td class="val-green">31.2%</td><td class="val-green">22.4%</td><td class="val-green">19.5%</td><td>58%</td></tr>
+                                    <tr><td>Flexi Cap</td><td class="val-green">22.1%</td><td class="val-green">17.3%</td><td class="val-green">15.2%</td><td>75%</td></tr>
+                                    <tr><td>Hybrid</td><td class="val-green">14.8%</td><td class="val-green">11.6%</td><td class="val-green">10.4%</td><td>82%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 4. NAV Performance & 5. Annual Returns Charts -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>4. NAV Performance</h3><p>Aggregated historical NAV growth trend</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="report-nav-chart" style="min-height:220px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>5. Annual Returns Comparison</h3><p>Absolute annual returns vs benchmark index</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="report-annual-chart" style="min-height:220px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. CAGR Analysis & 7. Rolling Returns -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>6. CAGR Analysis</h3><p>Compounded growth rates across holding horizons</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Horizon</th><th>Quant Flexi</th><th>Parag Parikh</th><th>Nifty 50 TRI</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1 Year</td><td class="val-green">28.35%</td><td class="val-green">24.20%</td><td>18.50%</td></tr>
+                                        <tr><td>3 Years</td><td class="val-green">22.40%</td><td class="val-green">18.50%</td><td>14.20%</td></tr>
+                                        <tr><td>5 Years</td><td class="val-green">19.20%</td><td class="val-green">16.80%</td><td>12.50%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>7. Rolling Returns Distribution</h3><p>3-Year rolling return frequency profiles</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="report-rolling-chart" style="min-height:190px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Top 10 Performing Funds & 9. Bottom 10 Performing Funds -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>8. Top 10 Performing Funds</h3><p>Highest returning mutual fund schemes</p></div></div>
+                            <div style="padding:15px; font-size:0.78rem;">
+                                <ol style="padding-left:16px; display:flex; flex-direction:column; gap:6px;">
+                                    <li>Nippon India Small Cap Fund (+31.25%)</li>
+                                    <li>Quant Flexi Cap Fund (+28.35%)</li>
+                                    <li>Kotak Emerging Equity Fund (+26.89%)</li>
+                                    <li>Quant Active Fund (+25.40%)</li>
+                                    <li>HDFC Mid-Cap Opportunities (+24.12%)</li>
+                                    <li>SBI Small Cap Fund (+23.85%)</li>
+                                    <li>Mirae Asset Emerging Bluechip (+22.90%)</li>
+                                    <li>Parag Parikh Flexi Cap Fund (+22.10%)</li>
+                                    <li>ICICI Prudential Bluechip (+19.45%)</li>
+                                    <li>SBI Bluechip Fund (+18.50%)</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>9. Bottom 10 Performing Funds</h3><p>Lowest returning mutual fund schemes</p></div></div>
+                            <div style="padding:15px; font-size:0.78rem;">
+                                <ol style="padding-left:16px; display:flex; flex-direction:column; gap:6px;">
+                                    <li>Aditya Birla Sun Life Income Fund (+5.20%)</li>
+                                    <li>Axis Corporate Debt Fund (+6.12%)</li>
+                                    <li>HDFC Short Term Debt Fund (+6.85%)</li>
+                                    <li>SBI Magnum Constant Maturity (+7.12%)</li>
+                                    <li>ICICI Prudential Savings Fund (+7.45%)</li>
+                                    <li>Kotak Debt Hybrid Fund (+8.90%)</li>
+                                    <li>HDFC Balanced Advantage (+10.20%)</li>
+                                    <li>Nippon India Equity Hybrid (+11.15%)</li>
+                                    <li>Mirae Asset Large Cap Fund (+14.10%)</li>
+                                    <li>SBI Large & Midcap Fund (+15.42%)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Performance Comparison & 11. Performance Summary -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>10. Performance Comparison</h3><p>Cross-benchmark return matrix</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Index</th><th>1Y Return</th><th>3Y Return</th><th>Beat Margin</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Portfolio Total</td><td class="val-green">22.10%</td><td class="val-green">17.30%</td><td><strong>+3.60%</strong></td></tr>
+                                        <tr><td>NIFTY 50 TRI</td><td>18.50%</td><td>14.20%</td><td>Benchmark</td></tr>
+                                        <tr><td>NIFTY 500 TRI</td><td>19.20%</td><td>15.10%</td><td>Benchmark</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>11. Performance Summary</h3><p>Executive narrative</p></div></div>
+                            <div style="padding:20px; font-size:0.8rem; line-height:1.6; color:var(--text-muted);">
+                                Analysis shows the active mutual fund selection framework successfully captured structural growth sectors (technology, banking, manufacturing) during the fiscal year. Asset allocation models recommend maintaining active weights in Quant Flexi Cap and HDFC Mid-cap opportunities to sustain momentum.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ===== PAGE: RISK REPORT ===== -->
                 <div class="page-panel" data-page="report-risk">
-                    <div class="welcome-section"><div class="welcome-text"><h1>⚠️ Risk Report</h1><p>Volatility, drawdown, and tail-risk analysis across your portfolio.</p></div></div>
-                    <div class="table-card"><div class="card-header"><div class="card-title"><h3>Risk Metrics by Fund</h3><p>Key risk indicators for top holdings</p></div></div>
-                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Fund</th><th>Std Dev</th><th>Sharpe</th><th>Max DD</th><th>VaR 95%</th><th>Beta</th></tr></thead><tbody>
-                            <tr><td>Quant Flexi Cap</td><td>18.2%</td><td>1.85</td><td class="val-red">-22.4%</td><td class="val-red">-2.8%</td><td>1.12</td></tr>
-                            <tr><td>Parag Parikh Flexi Cap</td><td>12.4%</td><td>1.68</td><td class="val-red">-15.2%</td><td class="val-red">-1.9%</td><td>0.84</td></tr>
-                            <tr><td>Mirae Asset Large Cap</td><td>14.1%</td><td>1.52</td><td class="val-red">-18.6%</td><td class="val-red">-2.1%</td><td>0.95</td></tr>
-                            <tr><td>Nippon Small Cap</td><td>22.8%</td><td>1.73</td><td class="val-red">-28.4%</td><td class="val-red">-3.5%</td><td>1.24</td></tr>
-                        </tbody></table></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>⚠️ Risk Report</h1>
+                            <p>Volatility, drawdown, and tail-risk analysis across your portfolio.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1. Risk Summary & 13. Download -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+                            <div class="card-title"><h3>1. Risk Summary</h3><p>Complete statistical volatility overview</p></div>
+                            <div style="display:flex;gap:10px;">
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/risk-pdf')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/risk-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                            </div>
+                        </div>
+                        <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
+                            This Risk Assessment Report details volatility metrics, tail risk thresholds (VaR/CVaR), and historical drawdown horizons. The current aggregate portfolio volatility is measured at <strong>14.1% standard deviation</strong>, representing lower-than-market overall risk while preserving robust Sharpe metrics.
+                        </div>
+                    </div>
+
+                    <!-- 2. Overall Risk Score / 3. Sharpe / 4. Sortino / 5. Std Dev / 6. Beta & Alpha / 7. VaR / 8. CVaR / 9. Max DD -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>Risk Metrics Analysis Dashboard</h3><p>2. Overall Risk Score, 3. Sharpe, 4. Sortino, 5. Std Dev, 6. Beta/Alpha, 7. VaR, 8. CVaR, and 9. Max Drawdown</p></div></div>
+                        <div class="table-wrapper" style="padding:0 15px 15px 15px;">
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th>Metric Identifier</th>
+                                        <th>Portfolio Aggregate</th>
+                                        <th>Benchmark (Nifty 50)</th>
+                                        <th>Assessment / Insights</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>2. Overall Risk Score</strong></td><td><strong>38 / 100</strong></td><td>50 / 100</td><td>Moderate Overall Exposure</td></tr>
+                                    <tr><td><strong>3. Sharpe Ratio</strong></td><td class="val-green">1.34</td><td>1.02</td><td>Strong Risk-Adjusted Return Profile</td></tr>
+                                    <tr><td><strong>4. Sortino Ratio</strong></td><td class="val-green">1.68</td><td>1.25</td><td>Excellent downside risk mitigation</td></tr>
+                                    <tr><td><strong>5. Standard Deviation</strong></td><td>14.1%</td><td>15.8%</td><td>Lower localized variance</td></tr>
+                                    <tr><td><strong>6. Beta &amp; Alpha</strong></td><td>β: 0.87 | α: 3.20%</td><td>β: 1.00 | α: 0.00%</td><td>Strong benchmark beat with lower beta</td></tr>
+                                    <tr><td><strong>7. Value at Risk (VaR 95%)</strong></td><td class="val-red">-2.14%</td><td class="val-red">-2.58%</td><td>95% daily worst-case confidence bounds</td></tr>
+                                    <tr><td><strong>8. Conditional VaR (CVaR 95%)</strong></td><td class="val-red">-3.47%</td><td class="val-red">-4.12%</td><td>Expected shortfall under tail events</td></tr>
+                                    <tr><td><strong>9. Maximum Drawdown</strong></td><td class="val-red">-18.6%</td><td class="val-red">-22.4%</td><td>Historical peak-to-trough drop</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 10. High Risk Funds & 11. Low Risk Funds -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>10. High Risk Funds</h3><p>Schemes with high standard deviation</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Scheme</th><th>Volatility (σ)</th><th>Max Drawdown</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Nippon India Small Cap</td><td class="val-red">22.8%</td><td class="val-red">-28.4%</td></tr>
+                                        <tr><td>Quant Flexi Cap</td><td class="val-red">18.2%</td><td class="val-red">-22.4%</td></tr>
+                                        <tr><td>Kotak Emerging Eq</td><td class="val-red">16.2%</td><td class="val-red">-21.5%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>11. Low Risk Funds</h3><p>Schemes with low standard deviation</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Scheme</th><th>Volatility (σ)</th><th>Max Drawdown</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>HDFC Balanced Adv</td><td class="val-green">10.2%</td><td class="val-green">-11.8%</td></tr>
+                                        <tr><td>SBI Bluechip</td><td class="val-green">11.4%</td><td class="val-green">-14.2%</td></tr>
+                                        <tr><td>Parag Parikh Flexi</td><td class="val-green">12.4%</td><td class="val-green">-15.2%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12. Risk Recommendations -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>12. Risk Recommendations</h3><p>AI observations & hedging suggestions</p></div></div>
+                        <div class="ai-insights-list" style="padding:15px;">
+                            <div class="ai-card yellow">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="alert-triangle"></i></div>
+                                    <div class="ai-details">
+                                        <h4>Tail-Risk Hedging Recommendations</h4>
+                                        <p>Given small-cap drawdowns occasionally testing -28.4%, we recommend re-allocating 5% to liquid short-term debt funds to capture lower volatility and stabilize monthly portfolio drawdown recoveries.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ===== PAGE: SIP ANALYSIS ===== -->
                 <div class="page-panel" data-page="report-sip">
-                    <div class="welcome-section"><div class="welcome-text"><h1>💰 SIP Analysis</h1><p>Systematic Investment Plan trends, investor behavior, and growth metrics.</p></div></div>
-                    <div class="chart-card" style="min-height:300px">
-                        <div class="card-header"><div class="card-title"><h3>Monthly SIP Inflows (₹ Cr)</h3><p>Industry-wide SIP contribution trend</p></div></div>
-                        <div id="sip-report-chart" style="min-height:260px;"></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>💰 SIP Analysis</h1>
+                            <p>Analyze Systematic Investment Plan performance, trends, and growth metrics.</p>
+                        </div>
                     </div>
-                    <div class="kpi-grid" style="margin-top:24px">
-                        <div class="kpi-card green"><div class="kpi-header"><span>Total SIP AUM</span><div class="kpi-icon"><i data-lucide="wallet"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 12.4L Cr</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> +18.3% YoY</span></div></div>
-                        <div class="kpi-card blue"><div class="kpi-header"><span>Active SIP Accounts</span><div class="kpi-icon"><i data-lucide="users"></i></div></div><div class="kpi-body"><span class="kpi-value">8.9 Cr</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> +2.1 Cr new</span></div></div>
-                        <div class="kpi-card purple"><div class="kpi-header"><span>Avg SIP Ticket Size</span><div class="kpi-icon"><i data-lucide="banknote"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 2,400</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> +₹200 vs last year</span></div></div>
+
+                    <!-- 1. SIP Summary & 12. Download -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+                            <div class="card-title"><h3>1. SIP Summary</h3><p>Platform systematic investment health summary</p></div>
+                            <div style="display:flex;gap:10px;">
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/sip-pdf')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/sip-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                            </div>
+                        </div>
+                        <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
+                            This Systematic Investment Plan (SIP) dashboard tracks retail inflows, account persistency, and compounding CAGR growth rates. Aggregate active SIP registrations total <strong>8.9 Crores accounts</strong>, yielding industry inflows of ₹21,500 Crores monthly with solid IRR metrics.
+                        </div>
+                    </div>
+
+                    <!-- 4. Total Investment / 5. Current Value / 6. Profit/Loss / 7. CAGR / 8. XIRR -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card green">
+                            <div class="kpi-header"><span>4. Total Invested</span><div class="kpi-icon"><i data-lucide="wallet"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 12,450 Cr</span><span class="kpi-change positive">Cumulative principle</span></div>
+                        </div>
+                        <div class="kpi-card blue">
+                            <div class="kpi-header"><span>5. Current Value</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 16,845 Cr</span><span class="kpi-change positive">AUM Valuation</span></div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-header"><span>6. Profit / Loss</span><div class="kpi-icon"><i data-lucide="banknote"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ +4,395 Cr</span><span class="kpi-change positive">+35.3% Absolute Gain</span></div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-grid" style="margin-top:0px;">
+                        <div class="kpi-card green">
+                            <div class="kpi-header"><span>7. CAGR</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">18.42%</span><span class="kpi-change positive">Annualized CAGR</span></div>
+                        </div>
+                        <div class="kpi-card blue">
+                            <div class="kpi-header"><span>8. XIRR</span><div class="kpi-icon"><i data-lucide="activity"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">21.85%</span><span class="kpi-change positive">Systematic IRR</span></div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-header"><span>9. Investment Timeline</span><div class="kpi-icon"><i data-lucide="calendar"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">3.5 Years</span><span class="kpi-change positive">Average tenure</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Monthly SIP Trend & 3. Yearly SIP Growth Charts -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>2. Monthly SIP Trend</h3><p>Industry systematic monthly inflows (₹ Cr)</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="report-sip-monthly-chart" style="min-height:220px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>3. Yearly SIP Growth</h3><p>Total annual systematic value growth</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="report-sip-yearly-chart" style="min-height:220px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Best SIP Performing Funds & 11. SIP Recommendations -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>10. Best SIP Performing Funds</h3><p>Top schemes based on 3Y XIRR metrics</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Scheme Name</th><th>SIP XIRR</th><th>Total Inflow</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Quant Flexi Cap</td><td class="val-green">24.8%</td><td>₹ 1,250 Cr</td></tr>
+                                        <tr><td>Nippon Small Cap</td><td class="val-green">28.2%</td><td>₹ 1,840 Cr</td></tr>
+                                        <tr><td>Parag Parikh Flexi</td><td class="val-green">21.5%</td><td>₹ 1,450 Cr</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>11. SIP Recommendations</h3><p>Best practices for systematic rebalancing</p></div></div>
+                            <div class="ai-insights-list" style="padding:15px; display:flex; flex-direction:column; gap:10px;">
+                                <div class="ai-card green" style="padding:12px 16px;"><div class="ai-card-content"><div class="ai-details">
+                                    <h4 style="font-size:0.8rem;margin-bottom:2px;">Step-Up SIP</h4>
+                                    <p style="font-size:0.72rem;">Configure a 10% annual step-up on active SIP allocations to optimize target AUM timelines.</p>
+                                </div></div></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ===== PAGE: TAX REPORT ===== -->
                 <div class="page-panel" data-page="report-tax">
-                    <div class="welcome-section"><div class="welcome-text"><h1>🧾 Tax Report</h1><p>Capital gains taxation analysis for your mutual fund holdings.</p></div></div>
-                    <div class="table-card"><div class="card-header"><div class="card-title"><h3>Tax Liability Summary</h3><p>STCG and LTCG breakdown by category</p></div></div>
-                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Category</th><th>Holding Period</th><th>Tax Rate</th><th>Estimated Tax</th></tr></thead><tbody>
-                            <tr><td>Equity (LTCG)</td><td>> 1 Year</td><td>12.5%</td><td>₹ 18,450</td></tr>
-                            <tr><td>Equity (STCG)</td><td>< 1 Year</td><td>20%</td><td>₹ 8,200</td></tr>
-                            <tr><td>Debt (LTCG)</td><td>> 3 Years</td><td>Slab Rate</td><td>₹ 5,100</td></tr>
-                            <tr><td>Hybrid</td><td>> 1 Year</td><td>12.5%</td><td>₹ 3,800</td></tr>
-                        </tbody></table></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>🧾 Tax Report</h1>
+                            <p>Capital gains taxation analysis for your mutual fund holdings.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1. Tax Summary & 10. Export -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+                            <div class="card-title"><h3>1. Tax Summary</h3><p>Aggregated capital gains tax liability breakdown</p></div>
+                            <div style="display:flex;gap:10px;">
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/tax-pdf')"><i data-lucide="download"></i> Download PDF</button>
+                                <button class="profile-action-btn outline" onclick="window.open('/api/v1/downloads/tax-excel')"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+                            </div>
+                        </div>
+                        <div style="padding:20px; font-size:0.85rem; line-height:1.6; color:var(--text-muted);">
+                            This Tax report evaluates Short-Term Capital Gains (STCG) and Long-Term Capital Gains (LTCG) tax implications based on holding periods and redemption schedules. Total taxable profits are evaluated under current regulatory slabs.
+                        </div>
+                    </div>
+
+                    <!-- 2. STCG / 3. LTCG / 4. Taxable Profit / 5. Tax-Free Amount / 6. Dividend Income -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card red">
+                            <div class="kpi-header"><span>2. STCG (Hold &lt; 1 Year)</span><div class="kpi-icon"><i data-lucide="percent"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">20.0% Rate</span><span class="kpi-change negative">₹ 8,200 Est. Tax</span></div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-header"><span>3. LTCG (Hold &gt; 1 Year)</span><div class="kpi-icon"><i data-lucide="percent"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">12.5% Rate</span><span class="kpi-change negative">₹ 18,450 Est. Tax</span></div>
+                        </div>
+                        <div class="kpi-card green">
+                            <div class="kpi-header"><span>5. Tax-Free LTCG Limit</span><div class="kpi-icon"><i data-lucide="shield-check"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 1.25 Lakhs</span><span class="kpi-change positive">Annual exemption</span></div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-grid" style="margin-top:0px;">
+                        <div class="kpi-card blue">
+                            <div class="kpi-header"><span>4. Taxable Profit</span><div class="kpi-icon"><i data-lucide="banknote"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 148,200</span><span class="kpi-change negative">Net realizations</span></div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-header"><span>6. Dividend Income</span><div class="kpi-icon"><i data-lucide="coins"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 12,450</span><span class="kpi-change negative">Taxed at slab rates</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Tax Calculation & 8. Financial Year Summary -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>7. Tax Calculation</h3><p>Detailed ledger of tax liabilities</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Asset Class</th><th>Holding Horizon</th><th>Applicable Tax</th><th>Liability</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Equity Mutual Funds</td><td>&gt; 1 Year (LTCG)</td><td>12.5% (over ₹1.25L)</td><td>₹ 18,450</td></tr>
+                                        <tr><td>Equity Mutual Funds</td><td>&lt; 1 Year (STCG)</td><td>20% flat rate</td><td>₹ 8,200</td></tr>
+                                        <tr><td>Debt Mutual Funds</td><td>Slab-Rate (STCG/LTCG)</td><td>As per Income Tax Slabs</td><td>₹ 5,100</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>8. Financial Year Summary</h3><p>Assessment of tax year holdings</p></div></div>
+                            <div style="padding:20px; font-size:0.82rem; color:var(--text-muted); line-height:1.6;">
+                                The total estimated tax liability for **FY25-26** is **₹31,750**. Redemptions in equity mutual funds were structured to utilize the ₹1.25 Lakh LTCG exemption limits effectively.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Tax Saving Suggestions -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>9. Tax Saving Suggestions</h3><p>Optimization advisory tips</p></div></div>
+                        <div class="ai-insights-list" style="padding:15px;">
+                            <div class="ai-card green">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="shield-check"></i></div>
+                                    <div class="ai-details">
+                                        <h4>Tax Loss Harvesting</h4>
+                                        <p>Consider tax loss harvesting on equity schemes by redeeming loss-making holdings before the end of the financial year to offset gains, saving an estimated <strong>₹4,200</strong> in taxes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
