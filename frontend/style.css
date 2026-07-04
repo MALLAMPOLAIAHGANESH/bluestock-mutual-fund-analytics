@@ -395,6 +395,69 @@ header.top-nav {
     gap: 28px;
 }
 
+/* SPA Page Panels */
+.page-panel {
+    display: none;
+    flex-direction: column;
+    gap: 28px;
+    animation: pageFadeIn 0.35s ease;
+}
+.page-panel.active {
+    display: flex;
+}
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* AI Insight Cards */
+.ai-insights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.ai-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+.ai-card:hover {
+    background: var(--card-bg-hover);
+    transform: translateX(4px);
+}
+.ai-card.green { border-left: 3px solid var(--green); }
+.ai-card.yellow { border-left: 3px solid var(--gold); }
+.ai-card.purple { border-left: 3px solid var(--purple); }
+.ai-card-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.ai-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.ai-card.green .ai-icon  { background: rgba(34,197,94,0.12); color: var(--green); }
+.ai-card.yellow .ai-icon { background: rgba(244,180,0,0.12); color: var(--gold); }
+.ai-card.purple .ai-icon { background: rgba(139,92,246,0.12); color: var(--purple); }
+.ai-details h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
+.ai-details p  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+.ai-arrow { color: var(--text-muted); flex-shrink: 0; }
+
+/* Negative value color */
+.val-red { color: var(--red); font-weight: 600; }
+
 /* Welcome Block */
 .welcome-section {
     display: flex;

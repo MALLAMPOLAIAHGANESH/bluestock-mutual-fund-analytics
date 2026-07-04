@@ -35,25 +35,25 @@
                 <div class="menu-section">
                     <span class="menu-header">Menu</span>
                     <ul class="menu-list">
-                        <li class="menu-item active">
+                        <li class="menu-item active" data-page="overview">
                             <a href="#overview"><i data-lucide="layout-dashboard"></i> <span>Overview</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="dashboard">
                             <a href="#dashboard"><i data-lucide="bar-chart-2"></i> <span>Dashboard</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="explorer">
                             <a href="#explorer"><i data-lucide="search"></i> <span>Fund Explorer</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="risk">
                             <a href="#risk"><i data-lucide="shield-alert"></i> <span>Risk Analytics</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="markowitz">
                             <a href="#markowitz"><i data-lucide="pie-chart"></i> <span>Markowitz Optimizer</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="montecarlo">
                             <a href="#montecarlo"><i data-lucide="git-branch"></i> <span>Monte Carlo</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="insights">
                             <a href="#insights"><i data-lucide="sparkles"></i> <span>Business Insights</span></a>
                         </li>
                     </ul>
@@ -63,16 +63,16 @@
                 <div class="menu-section">
                     <span class="menu-header">Reports</span>
                     <ul class="menu-list">
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="report-perf">
                             <a href="#report-perf"><i data-lucide="file-text"></i> <span>Performance Report</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="report-risk">
                             <a href="#report-risk"><i data-lucide="file-warning"></i> <span>Risk Report</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="report-sip">
                             <a href="#report-sip"><i data-lucide="trending-up"></i> <span>SIP Analysis</span></a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item" data-page="report-tax">
                             <a href="#report-tax"><i data-lucide="receipt"></i> <span>Tax Report</span></a>
                         </li>
                     </ul>
@@ -82,14 +82,14 @@
                 <div class="menu-section">
                     <span class="menu-header">Downloads</span>
                     <ul class="menu-list">
-                        <li class="menu-item">
-                            <a href="#dl-dataset"><i data-lucide="database"></i> <span>Dataset</span></a>
+                        <li class="menu-item" data-page="downloads">
+                            <a href="#downloads"><i data-lucide="database"></i> <span>Dataset</span></a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#dl-sqlite"><i data-lucide="server"></i> <span>SQLite Database</span></a>
+                        <li class="menu-item" data-page="downloads">
+                            <a href="#downloads"><i data-lucide="server"></i> <span>SQLite Database</span></a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#dl-notebooks"><i data-lucide="book-open"></i> <span>Notebooks</span></a>
+                        <li class="menu-item" data-page="downloads">
+                            <a href="#downloads"><i data-lucide="book-open"></i> <span>Notebooks</span></a>
                         </li>
                     </ul>
                 </div>
@@ -98,14 +98,14 @@
                 <div class="menu-section">
                     <span class="menu-header">Documentation</span>
                     <ul class="menu-list">
-                        <li class="menu-item">
-                            <a href="#doc-project"><i data-lucide="folder-git2"></i> <span>Project Docs</span></a>
+                        <li class="menu-item" data-page="documentation">
+                            <a href="#documentation"><i data-lucide="folder-git2"></i> <span>Project Docs</span></a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#doc-api"><i data-lucide="code"></i> <span>API Docs</span></a>
+                        <li class="menu-item" data-page="documentation">
+                            <a href="#documentation"><i data-lucide="code"></i> <span>API Docs</span></a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#doc-dictionary"><i data-lucide="info"></i> <span>Data Dictionary</span></a>
+                        <li class="menu-item" data-page="documentation">
+                            <a href="#documentation"><i data-lucide="info"></i> <span>Data Dictionary</span></a>
                         </li>
                     </ul>
                 </div>
@@ -156,6 +156,9 @@
 
             <!-- Scrollable Page Area -->
             <div class="dashboard-viewport">
+
+                <!-- ===== PAGE: OVERVIEW (default visible) ===== -->
+                <div class="page-panel active" data-page="overview">
                 <!-- Welcome Section -->
                 <div class="welcome-section fade-in">
                     <div class="welcome-text">
@@ -617,6 +620,166 @@
                         </div>
                     </div>
                 </div>
+                </div><!-- end page-panel overview -->
+
+                <!-- ===== PAGE: DASHBOARD ===== -->
+                <div class="page-panel" data-page="dashboard">
+                    <div class="welcome-section"><div class="welcome-text"><h1>📊 Dashboard</h1><p>Comprehensive analytics view of all mutual fund data.</p></div></div>
+                    <div class="chart-card" style="min-height:300px">
+                        <div class="card-header"><div class="card-title"><h3>Fund Performance Comparison</h3><p>Compare top funds across multiple time horizons</p></div></div>
+                        <div id="dashboard-perf-chart" style="min-height:260px;"></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: FUND EXPLORER ===== -->
+                <div class="page-panel" data-page="explorer">
+                    <div class="welcome-section"><div class="welcome-text"><h1>🔍 Fund Explorer</h1><p>Search, filter and compare mutual fund schemes across categories.</p></div></div>
+                    <div class="table-card">
+                        <div class="card-header"><div class="card-title"><h3>All Schemes</h3><p>Browse all 1,234 active schemes</p></div></div>
+                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Fund Name</th><th>Category</th><th>1Y Return</th><th>Sharpe</th><th>AUM</th></tr></thead><tbody>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>Quant Flexi Cap Fund</span></div></td><td><span class="badge blue">Flexi Cap</span></td><td class="val-green">28.35%</td><td>1.85</td><td>₹ 18,765 Cr</td></tr>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>Parag Parikh Flexi Cap</span></div></td><td><span class="badge blue">Flexi Cap</span></td><td class="val-green">24.67%</td><td>1.68</td><td>₹ 45,678 Cr</td></tr>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>Mirae Asset Large Cap</span></div></td><td><span class="badge gold">Large Cap</span></td><td class="val-green">22.41%</td><td>1.52</td><td>₹ 22,456 Cr</td></tr>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>Nippon India Small Cap</span></div></td><td><span class="badge purple">Small Cap</span></td><td class="val-green">31.25%</td><td>1.73</td><td>₹ 11,234 Cr</td></tr>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>HDFC Balanced Advantage</span></div></td><td><span class="badge blue">Hybrid</span></td><td class="val-green">16.78%</td><td>1.28</td><td>₹ 15,678 Cr</td></tr>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>SBI Bluechip Fund</span></div></td><td><span class="badge gold">Large Cap</span></td><td class="val-green">19.54%</td><td>1.41</td><td>₹ 42,123 Cr</td></tr>
+                            <tr><td><div class="fund-cell"><i data-lucide="star" class="star-icon"></i><span>Kotak Emerging Equity</span></div></td><td><span class="badge purple">Mid Cap</span></td><td class="val-green">26.89%</td><td>1.62</td><td>₹ 31,890 Cr</td></tr>
+                        </tbody></table></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: RISK ANALYTICS ===== -->
+                <div class="page-panel" data-page="risk">
+                    <div class="welcome-section"><div class="welcome-text"><h1>🛡️ Risk Analytics</h1><p>Deep-dive into portfolio volatility, drawdowns, and tail-risk metrics.</p></div></div>
+                    <div class="kpi-grid">
+                        <div class="kpi-card blue"><div class="kpi-header"><span>VaR (95%)</span><div class="kpi-icon"><i data-lucide="shield-alert"></i></div></div><div class="kpi-body"><span class="kpi-value">-2.14%</span><span class="kpi-change negative"><i data-lucide="trending-down"></i> Daily worst-case</span></div></div>
+                        <div class="kpi-card purple"><div class="kpi-header"><span>CVaR (95%)</span><div class="kpi-icon"><i data-lucide="shield-alert"></i></div></div><div class="kpi-body"><span class="kpi-value">-3.47%</span><span class="kpi-change negative"><i data-lucide="trending-down"></i> Expected shortfall</span></div></div>
+                        <div class="kpi-card gold"><div class="kpi-header"><span>Max Drawdown</span><div class="kpi-icon"><i data-lucide="alert-triangle"></i></div></div><div class="kpi-body"><span class="kpi-value">-18.6%</span><span class="kpi-change negative"><i data-lucide="trending-down"></i> Peak-to-trough</span></div></div>
+                        <div class="kpi-card green"><div class="kpi-header"><span>Beta (vs NIFTY)</span><div class="kpi-icon"><i data-lucide="activity"></i></div></div><div class="kpi-body"><span class="kpi-value">0.87</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> Lower than market</span></div></div>
+                    </div>
+                    <div class="chart-card" style="min-height:300px">
+                        <div class="card-header"><div class="card-title"><h3>Portfolio Drawdown Chart</h3><p>Historical max drawdown timeline</p></div></div>
+                        <div id="drawdown-chart" style="min-height:260px;"></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: MARKOWITZ ===== -->
+                <div class="page-panel" data-page="markowitz">
+                    <div class="welcome-section"><div class="welcome-text"><h1>📐 Markowitz Optimizer</h1><p>Efficient frontier portfolio optimization using mean-variance analysis.</p></div></div>
+                    <div class="chart-card" style="min-height:350px">
+                        <div class="card-header"><div class="card-title"><h3>Efficient Frontier</h3><p>Risk vs Return trade-off for selected asset universe</p></div></div>
+                        <div id="frontier-chart" style="min-height:300px;"></div>
+                    </div>
+                    <div class="kpi-grid" style="margin-top:24px">
+                        <div class="kpi-card green"><div class="kpi-header"><span>Optimal Return</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div><div class="kpi-body"><span class="kpi-value">18.4%</span><span class="kpi-change positive">Expected annualized</span></div></div>
+                        <div class="kpi-card blue"><div class="kpi-header"><span>Optimal Volatility</span><div class="kpi-icon"><i data-lucide="activity"></i></div></div><div class="kpi-body"><span class="kpi-value">12.7%</span><span class="kpi-change positive">Annualized σ</span></div></div>
+                        <div class="kpi-card purple"><div class="kpi-header"><span>Sharpe Ratio</span><div class="kpi-icon"><i data-lucide="shield-check"></i></div></div><div class="kpi-body"><span class="kpi-value">1.45</span><span class="kpi-change positive">Tangency portfolio</span></div></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: MONTE CARLO ===== -->
+                <div class="page-panel" data-page="montecarlo">
+                    <div class="welcome-section"><div class="welcome-text"><h1>🎲 Monte Carlo Simulation</h1><p>10,000 Geometric Brownian Motion paths for portfolio forecasting.</p></div></div>
+                    <div class="chart-card" style="min-height:350px">
+                        <div class="card-header"><div class="card-title"><h3>Simulated NAV Paths (5Y)</h3><p>GBM projection with 10th / 50th / 90th percentile bands</p></div></div>
+                        <div id="montecarlo-chart" style="min-height:300px;"></div>
+                    </div>
+                    <div class="kpi-grid" style="margin-top:24px">
+                        <div class="kpi-card green"><div class="kpi-header"><span>90th Percentile</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 284.50</span><span class="kpi-change positive">Best scenario</span></div></div>
+                        <div class="kpi-card blue"><div class="kpi-header"><span>50th Percentile</span><div class="kpi-icon"><i data-lucide="minus"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 178.20</span><span class="kpi-change positive">Median outcome</span></div></div>
+                        <div class="kpi-card gold"><div class="kpi-header"><span>10th Percentile</span><div class="kpi-icon"><i data-lucide="trending-down"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 98.40</span><span class="kpi-change negative">Worst scenario</span></div></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: BUSINESS INSIGHTS ===== -->
+                <div class="page-panel" data-page="insights">
+                    <div class="welcome-section"><div class="welcome-text"><h1>✨ Business Insights</h1><p>AI-generated strategic intelligence for portfolio managers.</p></div></div>
+                    <div class="ai-insights-list">
+                        <div class="ai-card green"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="trending-up"></i></div><div class="ai-details"><h4>Equity funds outperformed benchmarks by 3.2% on average</h4><p>Large Cap and Flexi Cap categories drove the bulk of outperformance in FY25.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                        <div class="ai-card yellow"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="alert-triangle"></i></div><div class="ai-details"><h4>Small Cap volatility increased 22% quarter-over-quarter</h4><p>Monitor drawdowns closely. Consider rebalancing into Mid Cap for stability.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                        <div class="ai-card purple"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="sparkles"></i></div><div class="ai-details"><h4>SIP inflows at all-time high of ₹ 21,500 Cr</h4><p>Retail participation continues to grow. B30 cities contributing 38% of new SIPs.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                        <div class="ai-card green"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="shield-check"></i></div><div class="ai-details"><h4>Portfolio diversification score improved to 0.82 (HHI)</h4><p>Well-diversified across 6 categories. Concentration risk is within safe limits.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: PERFORMANCE REPORT ===== -->
+                <div class="page-panel" data-page="report-perf">
+                    <div class="welcome-section"><div class="welcome-text"><h1>📈 Performance Report</h1><p>Comprehensive fund performance analytics across time periods.</p></div></div>
+                    <div class="table-card"><div class="card-header"><div class="card-title"><h3>Fund Returns Summary</h3><p>Annualized returns comparison by category</p></div></div>
+                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Category</th><th>1Y Avg Return</th><th>3Y Avg Return</th><th>5Y Avg Return</th><th>Benchmark Beat %</th></tr></thead><tbody>
+                            <tr><td>Large Cap</td><td class="val-green">18.5%</td><td class="val-green">14.2%</td><td class="val-green">12.8%</td><td class="val-green">68%</td></tr>
+                            <tr><td>Mid Cap</td><td class="val-green">24.3%</td><td class="val-green">18.7%</td><td class="val-green">16.1%</td><td class="val-green">72%</td></tr>
+                            <tr><td>Small Cap</td><td class="val-green">31.2%</td><td class="val-green">22.4%</td><td class="val-green">19.5%</td><td class="val-green">58%</td></tr>
+                            <tr><td>Flexi Cap</td><td class="val-green">22.1%</td><td class="val-green">17.3%</td><td class="val-green">15.2%</td><td class="val-green">75%</td></tr>
+                            <tr><td>Hybrid</td><td class="val-green">14.8%</td><td class="val-green">11.6%</td><td class="val-green">10.4%</td><td class="val-green">82%</td></tr>
+                        </tbody></table></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: RISK REPORT ===== -->
+                <div class="page-panel" data-page="report-risk">
+                    <div class="welcome-section"><div class="welcome-text"><h1>⚠️ Risk Report</h1><p>Volatility, drawdown, and tail-risk analysis across your portfolio.</p></div></div>
+                    <div class="table-card"><div class="card-header"><div class="card-title"><h3>Risk Metrics by Fund</h3><p>Key risk indicators for top holdings</p></div></div>
+                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Fund</th><th>Std Dev</th><th>Sharpe</th><th>Max DD</th><th>VaR 95%</th><th>Beta</th></tr></thead><tbody>
+                            <tr><td>Quant Flexi Cap</td><td>18.2%</td><td>1.85</td><td class="val-red">-22.4%</td><td class="val-red">-2.8%</td><td>1.12</td></tr>
+                            <tr><td>Parag Parikh Flexi Cap</td><td>12.4%</td><td>1.68</td><td class="val-red">-15.2%</td><td class="val-red">-1.9%</td><td>0.84</td></tr>
+                            <tr><td>Mirae Asset Large Cap</td><td>14.1%</td><td>1.52</td><td class="val-red">-18.6%</td><td class="val-red">-2.1%</td><td>0.95</td></tr>
+                            <tr><td>Nippon Small Cap</td><td>22.8%</td><td>1.73</td><td class="val-red">-28.4%</td><td class="val-red">-3.5%</td><td>1.24</td></tr>
+                        </tbody></table></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: SIP ANALYSIS ===== -->
+                <div class="page-panel" data-page="report-sip">
+                    <div class="welcome-section"><div class="welcome-text"><h1>💰 SIP Analysis</h1><p>Systematic Investment Plan trends, investor behavior, and growth metrics.</p></div></div>
+                    <div class="chart-card" style="min-height:300px">
+                        <div class="card-header"><div class="card-title"><h3>Monthly SIP Inflows (₹ Cr)</h3><p>Industry-wide SIP contribution trend</p></div></div>
+                        <div id="sip-report-chart" style="min-height:260px;"></div>
+                    </div>
+                    <div class="kpi-grid" style="margin-top:24px">
+                        <div class="kpi-card green"><div class="kpi-header"><span>Total SIP AUM</span><div class="kpi-icon"><i data-lucide="wallet"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 12.4L Cr</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> +18.3% YoY</span></div></div>
+                        <div class="kpi-card blue"><div class="kpi-header"><span>Active SIP Accounts</span><div class="kpi-icon"><i data-lucide="users"></i></div></div><div class="kpi-body"><span class="kpi-value">8.9 Cr</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> +2.1 Cr new</span></div></div>
+                        <div class="kpi-card purple"><div class="kpi-header"><span>Avg SIP Ticket Size</span><div class="kpi-icon"><i data-lucide="banknote"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 2,400</span><span class="kpi-change positive"><i data-lucide="trending-up"></i> +₹200 vs last year</span></div></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: TAX REPORT ===== -->
+                <div class="page-panel" data-page="report-tax">
+                    <div class="welcome-section"><div class="welcome-text"><h1>🧾 Tax Report</h1><p>Capital gains taxation analysis for your mutual fund holdings.</p></div></div>
+                    <div class="table-card"><div class="card-header"><div class="card-title"><h3>Tax Liability Summary</h3><p>STCG and LTCG breakdown by category</p></div></div>
+                        <div class="table-wrapper"><table class="premium-table"><thead><tr><th>Category</th><th>Holding Period</th><th>Tax Rate</th><th>Estimated Tax</th></tr></thead><tbody>
+                            <tr><td>Equity (LTCG)</td><td>> 1 Year</td><td>12.5%</td><td>₹ 18,450</td></tr>
+                            <tr><td>Equity (STCG)</td><td>< 1 Year</td><td>20%</td><td>₹ 8,200</td></tr>
+                            <tr><td>Debt (LTCG)</td><td>> 3 Years</td><td>Slab Rate</td><td>₹ 5,100</td></tr>
+                            <tr><td>Hybrid</td><td>> 1 Year</td><td>12.5%</td><td>₹ 3,800</td></tr>
+                        </tbody></table></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: DOWNLOADS ===== -->
+                <div class="page-panel" data-page="downloads">
+                    <div class="welcome-section"><div class="welcome-text"><h1>📥 Downloads Center</h1><p>Export datasets, databases, notebooks, and reports.</p></div></div>
+                    <div class="download-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+                        <div class="dl-card"><i data-lucide="file-spreadsheet"></i><span>CSV Dataset</span><small style="color:var(--text-muted);font-size:0.7rem;">10 raw files</small></div>
+                        <div class="dl-card"><i data-lucide="server"></i><span>SQLite Database</span><small style="color:var(--text-muted);font-size:0.7rem;">bluestock_mf.db</small></div>
+                        <div class="dl-card"><i data-lucide="book-open"></i><span>Jupyter Notebooks</span><small style="color:var(--text-muted);font-size:0.7rem;">5 analysis notebooks</small></div>
+                        <div class="dl-card"><i data-lucide="layout-grid"></i><span>Power BI Template</span><small style="color:var(--text-muted);font-size:0.7rem;">.pbix file</small></div>
+                        <div class="dl-card"><i data-lucide="file-text"></i><span>PDF Reports</span><small style="color:var(--text-muted);font-size:0.7rem;">Analytics summary</small></div>
+                        <div class="dl-card"><i data-lucide="code"></i><span>Python Scripts</span><small style="color:var(--text-muted);font-size:0.7rem;">ETL & Risk utils</small></div>
+                    </div>
+                </div>
+
+                <!-- ===== PAGE: DOCUMENTATION ===== -->
+                <div class="page-panel" data-page="documentation">
+                    <div class="welcome-section"><div class="welcome-text"><h1>📚 Documentation</h1><p>Technical documentation, API reference, and data dictionary.</p></div></div>
+                    <div class="ai-insights-list">
+                        <div class="ai-card green"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="folder-git2"></i></div><div class="ai-details"><h4>Project Architecture</h4><p>Clean Architecture with FastAPI backend, Streamlit dashboard, and HTML5 frontend.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                        <div class="ai-card yellow"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="code"></i></div><div class="ai-details"><h4>API Reference (Swagger)</h4><p>FastAPI auto-generated OpenAPI docs at /docs endpoint. Includes all REST routes.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                        <div class="ai-card purple"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="info"></i></div><div class="ai-details"><h4>Data Dictionary</h4><p>Complete column-level documentation for all 10 database tables and 40+ fields.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                        <div class="ai-card green"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="book-open"></i></div><div class="ai-details"><h4>SQL Reference Guide</h4><p>6 modular SQL scripts covering DDL, constraints, views, indexes, and analytics.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
