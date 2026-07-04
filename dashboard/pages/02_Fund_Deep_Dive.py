@@ -67,7 +67,7 @@ with tab_viz:
         fig_nav.add_trace(go.Scatter(
             x=nav_sub["date"], y=nav_sub["nav"],
             mode="lines", name="NAV",
-            line=dict(color="#382c55", width=2),
+            line=dict(color="#dea11a", width=2),
             fill="tozeroy", fillcolor="rgba(100, 130, 160, 0.15)"
         ))
         fig_nav.update_layout(

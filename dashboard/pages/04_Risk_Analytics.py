@@ -119,7 +119,7 @@ with col3:
         title="Portfolio Concentration — HHI Score (higher = more concentrated)",
         color="HHI", color_continuous_scale=["#dcc6b1", "#742a10"]
     )
-    fig_hhi.add_hline(y=0.15, line_dash="dot", line_color="#382c55", annotation_text="HHI 0.15 = moderate")
+    fig_hhi.add_hline(y=0.15, line_dash="dot", line_color="#6482a0", annotation_text="HHI 0.15 = moderate")
     fig_hhi.update_layout(xaxis_tickangle=-45, height=400, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
     st.plotly_chart(fig_hhi, use_container_width=True)
 
@@ -128,7 +128,7 @@ with col4:
         dd = filt_perf.sort_values("max_drawdown_pct").head(20)
         fig_dd = px.bar(dd, x="max_drawdown_pct", y="scheme_name", orientation="h",
                         title="Maximum Drawdown % — Worst 20 Funds",
-                        color="max_drawdown_pct", color_continuous_scale=["#742a10", "#382c55"],
+                        color="max_drawdown_pct", color_continuous_scale=["#742a10", "#dea11a"],
                         labels={"max_drawdown_pct": "Max Drawdown %", "scheme_name": "Fund"})
         fig_dd.update_layout(height=400, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(fig_dd, use_container_width=True)

@@ -70,7 +70,7 @@ with t1:
             top_funds.columns = ["Fund", "Total (₹)"]
             fig_tf = px.bar(top_funds, x="Total (₹)", y="Fund", orientation="h",
                             title="Top 10 Funds by Transaction Volume",
-                            color="Total (₹)", color_continuous_scale=["#dcc6b1", "#6482a0", "#382c55"])
+                            color="Total (₹)", color_continuous_scale=["#dcc6b1", "#6482a0", "#dea11a"])
             fig_tf.update_layout(showlegend=False, height=320, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_tf, use_container_width=True)
 
@@ -105,6 +105,6 @@ with t3:
         cohort.columns = ["Cohort Year", "Avg SIP (₹)"]
         fig_coh = px.bar(cohort, x="Cohort Year", y="Avg SIP (₹)",
                          title="Avg SIP Amount by Investor Cohort (First-Transaction Year)",
-                         color="Avg SIP (₹)", color_continuous_scale=["#ceb6ac", "#742a10", "#382c55"])
+                         color="Avg SIP (₹)", color_continuous_scale=["#ceb6ac", "#742a10", "#dea11a"])
         fig_coh.update_layout(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", height=380)
         st.plotly_chart(fig_coh, use_container_width=True)

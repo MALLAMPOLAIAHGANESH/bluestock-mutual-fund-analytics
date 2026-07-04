@@ -107,7 +107,7 @@ with tab_charts:
         fig_sip = px.area(sip, x="month", y="inflow_crore",
                           title="Monthly SIP Inflows (₹ Crore) — Industry Wide",
                           labels={"inflow_crore": "SIP Inflow (₹ Cr)", "month": "Month"})
-        fig_sip.update_traces(fillcolor="rgba(100, 130, 160, 0.2)", line_color="#382c55")
+        fig_sip.update_traces(fillcolor="rgba(100, 130, 160, 0.2)", line_color="#dea11a")
         fig_sip.update_layout(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", height=280)
         st.plotly_chart(fig_sip, use_container_width=True)
 
