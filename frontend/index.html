@@ -2254,14 +2254,203 @@
 
                 <!-- ===== PAGE: DOWNLOADS ===== -->
                 <div class="page-panel" data-page="downloads">
-                    <div class="welcome-section"><div class="welcome-text"><h1>📥 Downloads Center</h1><p>Export datasets, databases, notebooks, and reports.</p></div></div>
-                    <div class="download-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
-                        <div class="dl-card"><i data-lucide="file-spreadsheet"></i><span>CSV Dataset</span><small style="color:var(--text-muted);font-size:0.7rem;">10 raw files</small></div>
-                        <div class="dl-card"><i data-lucide="server"></i><span>SQLite Database</span><small style="color:var(--text-muted);font-size:0.7rem;">bluestock_mf.db</small></div>
-                        <div class="dl-card"><i data-lucide="book-open"></i><span>Jupyter Notebooks</span><small style="color:var(--text-muted);font-size:0.7rem;">5 analysis notebooks</small></div>
-                        <div class="dl-card"><i data-lucide="layout-grid"></i><span>Power BI Template</span><small style="color:var(--text-muted);font-size:0.7rem;">.pbix file</small></div>
-                        <div class="dl-card"><i data-lucide="file-text"></i><span>PDF Reports</span><small style="color:var(--text-muted);font-size:0.7rem;">Analytics summary</small></div>
-                        <div class="dl-card"><i data-lucide="code"></i><span>Python Scripts</span><small style="color:var(--text-muted);font-size:0.7rem;">ETL & Risk utils</small></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>📥 Downloads Center</h1>
+                            <p>Export raw datasets, SQLite databases, Jupyter notebooks, Power BI models, and report assets.</p>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; padding:20px 0;">
+                        <!-- 1. Dataset -->
+                        <div class="chart-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+                            <div>
+                                <div class="card-header"><div class="card-title"><h3>📂 1. Dataset</h3><p>Mutual Fund schema and metrics datasets</p></div></div>
+                                <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Raw CSV Files (.csv)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/raw-csv')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Processed CSV Files (.csv)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/processed-csv')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Excel Dataset (.xlsx)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/excel-data')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• ZIP Archive (.zip)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/zip-archive')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Sample Dataset (.csv)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sample-csv')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <span>• Data Dictionary (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/dictionary-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. SQLite Database -->
+                        <div class="chart-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+                            <div>
+                                <div class="card-header"><div class="card-title"><h3>🗄️ 2. SQLite Database</h3><p>Relational SQL database backups & scripts</p></div></div>
+                                <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• SQLite Database (.db)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sqlite-db')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• SQL Schema (.sql)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sql-schema')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• ER Diagram (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/er-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <span>• Database Backup (.zip)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/db-backup')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Jupyter Notebooks -->
+                        <div class="chart-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+                            <div>
+                                <div class="card-header"><div class="card-title"><h3>📓 3. Jupyter Notebooks</h3><p>Analysis and modeling sandbox files</p></div></div>
+                                <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• EDA Notebook (.ipynb)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/eda-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Monte Carlo Simulation (.ipynb)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/montecarlo-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Markowitz Optimization (.ipynb)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/markowitz-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Risk Analysis (.ipynb)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/risk-ipynb')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• HTML Version (.html)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/notebooks-html')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <span>• PDF Version (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/notebooks-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Power BI -->
+                        <div class="chart-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+                            <div>
+                                <div class="card-header"><div class="card-title"><h3>📊 4. Power BI</h3><p>Power BI visual modeling templates</p></div></div>
+                                <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Power BI Dashboard (.pbix)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-pbix')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Power BI Template (.pbit)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-pbit')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Power BI Report (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <span>• Dashboard Screenshots (.png)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/powerbi-screenshots')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. PDF Reports -->
+                        <div class="chart-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+                            <div>
+                                <div class="card-header"><div class="card-title"><h3>📄 5. PDF Reports</h3><p>Static reports & presentations</p></div></div>
+                                <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Final Project Report (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/project-report-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Performance Report (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/performance-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Risk Report (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/risk-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• SIP Analysis Report (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/sip-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Tax Report (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/tax-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <span>• Executive Summary (.pdf)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/summary-pdf')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. Python Scripts -->
+                        <div class="chart-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+                            <div>
+                                <div class="card-header"><div class="card-title"><h3>🐍 6. Python Scripts</h3><p>Data science & server pipelines scripts</p></div></div>
+                                <div style="padding:15px; display:flex; flex-direction:column; gap:10px; font-size:0.8rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• ETL Pipeline (.py)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/etl-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Data Cleaning (.py)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/clean-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Risk Analytics (.py)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/risk-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Monte Carlo (.py)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/montecarlo-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Markowitz (.py)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/markowitz-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Utility Functions (.py)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/utils-py')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                                        <span>• Complete Source Code (.zip)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/src-zip')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <span>• Requirements (.txt)</span>
+                                        <button class="profile-action-btn outline" style="padding:4px 10px;font-size:0.75rem;" onclick="window.open('/api/v1/downloads/req-txt')"><i data-lucide="download" style="width:12px;height:12px;"></i> Get</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
