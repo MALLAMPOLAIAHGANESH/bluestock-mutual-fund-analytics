@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluestock Mutual Fund Analytics Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- CSS Modules -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Aurora Effect -->
+        <div class="aurora-bg"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">📈</div>
+                <div class="logo-text">
+                    <span class="logo-title">BLUESTOCK</span>
+                    <span class="logo-subtitle">Mutual Fund Analytics</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <!-- Navigation section -->
+                <div class="menu-section">
+                    <span class="menu-header">Menu</span>
+                    <ul class="menu-list">
+                        <li class="menu-item active">
+                            <a href="#overview"><i data-lucide="layout-dashboard"></i> <span>Overview</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#dashboard"><i data-lucide="bar-chart-2"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#explorer"><i data-lucide="search"></i> <span>Fund Explorer</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#risk"><i data-lucide="shield-alert"></i> <span>Risk Analytics</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#markowitz"><i data-lucide="pie-chart"></i> <span>Markowitz Optimizer</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#montecarlo"><i data-lucide="git-branch"></i> <span>Monte Carlo</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#insights"><i data-lucide="sparkles"></i> <span>Business Insights</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Reports section -->
+                <div class="menu-section">
+                    <span class="menu-header">Reports</span>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#report-perf"><i data-lucide="file-text"></i> <span>Performance Report</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#report-risk"><i data-lucide="file-warning"></i> <span>Risk Report</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#report-sip"><i data-lucide="trending-up"></i> <span>SIP Analysis</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#report-tax"><i data-lucide="receipt"></i> <span>Tax Report</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Downloads section -->
+                <div class="menu-section">
+                    <span class="menu-header">Downloads</span>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#dl-dataset"><i data-lucide="database"></i> <span>Dataset</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#dl-sqlite"><i data-lucide="server"></i> <span>SQLite Database</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#dl-notebooks"><i data-lucide="book-open"></i> <span>Notebooks</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Documentation section -->
+                <div class="menu-section">
+                    <span class="menu-header">Documentation</span>
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#doc-project"><i data-lucide="folder-git2"></i> <span>Project Docs</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#doc-api"><i data-lucide="code"></i> <span>API Docs</span></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#doc-dictionary"><i data-lucide="info"></i> <span>Data Dictionary</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar footer (Theme toggle) -->
+            <div class="sidebar-footer">
+                <div class="theme-toggle-container">
+                    <i data-lucide="sun"></i>
+                    <span>Dark Mode</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" checked id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </aside>
+
+        <!-- Main Content Viewport -->
+        <main class="main-content">
+            <!-- Header/Navigation -->
+            <header class="top-nav">
+                <!-- Search bar -->
+                <div class="search-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" class="search-input" placeholder="Search for funds, categories, AMCs..." id="global-search">
+                    <span class="kbd-shortcut">Ctrl+K</span>
+                </div>
+
+                <!-- Nav Actions -->
+                <div class="nav-actions">
+                    <div class="icon-btn" id="notif-btn">
+                        <i data-lucide="bell"></i>
+                        <span class="notification-badge">12</span>
+                    </div>
+                    <div class="icon-btn" id="dl-panel-btn">
+                        <i data-lucide="download"></i>
+                    </div>
+                    <div class="profile-container" id="profile-btn">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" class="profile-avatar" alt="Avatar">
+                        <div class="profile-info">
+                            <span class="profile-name">Ganesh</span>
+                            <span class="profile-role">Data Analyst</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Scrollable Page Area -->
+            <div class="dashboard-viewport">
+                <!-- Welcome Section -->
+                <div class="welcome-section fade-in">
+                    <div class="welcome-text">
+                        <h1>Welcome back, Ganesh! 👋</h1>
+                        <p>Here's what's happening with your mutual fund portfolio today.</p>
+                    </div>
+                    <button class="date-selector">
+                        <i data-lucide="calendar"></i>
+                        <span>May 24, 2025</span>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                </div>
+
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <!-- KPI 1 -->
+                    <div class="kpi-card blue fade-in delay-1">
+                        <div class="kpi-header">
+                            <span>Total AUM</span>
+                            <div class="kpi-icon"><i data-lucide="wallet"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">₹ 2,45,678 Cr</span>
+                            <span class="kpi-change positive">
+                                <i data-lucide="trending-up"></i> +12.5% vs last month
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 2 -->
+                    <div class="kpi-card purple fade-in delay-2">
+                        <div class="kpi-header">
+                            <span>Active Schemes</span>
+                            <div class="kpi-icon"><i data-lucide="layers"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">1,234</span>
+                            <span class="kpi-change positive">
+                                <i data-lucide="trending-up"></i> +8.2% vs last month
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 3 -->
+                    <div class="kpi-card green fade-in delay-3">
+                        <div class="kpi-header">
+                            <span>Average CAGR</span>
+                            <div class="kpi-icon"><i data-lucide="line-chart"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">15.74%</span>
+                            <span class="kpi-change positive">
+                                <i data-lucide="trending-up"></i> +3.1% vs last month
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 4 -->
+                    <div class="kpi-card gold fade-in delay-4">
+                        <div class="kpi-header">
+                            <span>Best Performing Fund</span>
+                            <div class="kpi-icon"><i data-lucide="trophy"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value" style="font-size: 1.25rem; line-height: 1.6rem; padding: 4px 0;">Quant Flexi Cap</span>
+                            <span class="kpi-change positive">
+                                <i data-lucide="trending-up"></i> +28.35% (1Y Return)
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 5 -->
+                    <div class="kpi-card blue fade-in delay-1">
+                        <div class="kpi-header">
+                            <span>Average Expense Ratio</span>
+                            <div class="kpi-icon"><i data-lucide="percent"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">0.89%</span>
+                            <span class="kpi-change negative">
+                                <i data-lucide="trending-down"></i> -0.05% vs last month
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 6 -->
+                    <div class="kpi-card purple fade-in delay-2">
+                        <div class="kpi-header">
+                            <span>Sharpe Ratio (Avg)</span>
+                            <div class="kpi-icon"><i data-lucide="shield-check"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">1.34</span>
+                            <span class="kpi-change positive">
+                                <i data-lucide="trending-up"></i> +0.12 vs last month
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 7 -->
+                    <div class="kpi-card green fade-in delay-3">
+                        <div class="kpi-header">
+                            <span>Portfolio Return</span>
+                            <div class="kpi-icon"><i data-lucide="activity"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">18.23%</span>
+                            <span class="kpi-change positive">
+                                <i data-lucide="trending-up"></i> Beating benchmark
+                            </span>
+                        </div>
+                    </div>
+                    <!-- KPI 8 -->
+                    <div class="kpi-card gold fade-in delay-4">
+                        <div class="kpi-header">
+                            <span>Risk Score</span>
+                            <div class="kpi-icon"><i data-lucide="alert-triangle"></i></div>
+                        </div>
+                        <div class="kpi-body">
+                            <span class="kpi-value">38 <span style="font-size: 0.95rem; font-weight: 500; color: var(--text-muted);">/ 100</span></span>
+                            <span class="kpi-change positive" style="color: var(--gold);">
+                                Moderate Risk
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Layout 1 (AUM Chart and Category) -->
+                <div class="dashboard-grid-1 fade-in delay-5">
+                    <!-- Left: Area Chart -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>AUM Growth Over Time</h3>
+                                <p>Monthly tracking of total assets under management</p>
+                            </div>
+                            <div class="card-actions">
+                                <div class="filter-tabs">
+                                    <button class="filter-btn">1M</button>
+                                    <button class="filter-btn">6M</button>
+                                    <button class="filter-btn active">1Y</button>
+                                    <button class="filter-btn">ALL</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="aum-growth-chart" style="min-height: 250px;"></div>
+                    </div>
+
+                    <!-- Right: Donut Chart -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>AUM by Category</h3>
+                                <p>Asset allocation across categories</p>
+                            </div>
+                        </div>
+                        <div class="donut-container">
+                            <div id="category-donut-chart"></div>
+                            <div class="chart-center-val">
+                                <span class="label">Total AUM</span>
+                                <span class="value">₹2.45L Cr</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Layout 1.5: Market Overview -->
+                <div class="welcome-section fade-in">
+                    <div class="welcome-text">
+                        <h3>Market Overview</h3>
+                    </div>
+                    <span style="color: var(--primary-blue); font-size: 0.85rem; cursor: pointer; font-weight: 600;">View All</span>
+                </div>
+                <div class="market-grid fade-in">
+                    <div class="market-card">
+                        <div class="market-info">
+                            <div>
+                                <span class="market-name">NIFTY 50</span>
+                                <div class="market-val">24,834.85</div>
+                            </div>
+                            <span class="market-change positive"><i data-lucide="trending-up"></i> +0.85%</span>
+                        </div>
+                        <div id="nifty-sparkline"></div>
+                    </div>
+                    <div class="market-card">
+                        <div class="market-info">
+                            <div>
+                                <span class="market-name">SENSEX</span>
+                                <div class="market-val">81,721.08</div>
+                            </div>
+                            <span class="market-change positive"><i data-lucide="trending-up"></i> +0.74%</span>
+                        </div>
+                        <div id="sensex-sparkline"></div>
+                    </div>
+                    <div class="market-card">
+                        <div class="market-info">
+                            <div>
+                                <span class="market-name">NIFTY BANK</span>
+                                <div class="market-val">55,187.45</div>
+                            </div>
+                            <span class="market-change positive"><i data-lucide="trending-up"></i> +1.18%</span>
+                        </div>
+                        <div id="bank-sparkline"></div>
+                    </div>
+                    <div class="market-card">
+                        <div class="market-info">
+                            <div>
+                                <span class="market-name">INDIA VIX</span>
+                                <div class="market-val">12.64</div>
+                            </div>
+                            <span class="market-change negative"><i data-lucide="trending-down"></i> -1.25%</span>
+                        </div>
+                        <div id="vix-sparkline"></div>
+                    </div>
+                </div>
+
+                <!-- Grid Layout 2 (Gauge, AI, Alerts) -->
+                <div class="dashboard-grid-2 fade-in">
+                    <!-- Gauge Meter -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>Risk Meter (Portfolio)</h3>
+                                <p>Aggregated asset volatility measurement</p>
+                            </div>
+                        </div>
+                        <div class="gauge-container">
+                            <div id="risk-gauge-chart"></div>
+                        </div>
+                        <div class="gauge-insight-text">
+                            Your portfolio risk is <strong>Moderate</strong>. Well diversified across asset classes.
+                        </div>
+                    </div>
+
+                    <!-- AI Insights -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>AI Portfolio Insights</h3>
+                                <p>AI-generated asset warnings & metrics</p>
+                            </div>
+                        </div>
+                        <div class="ai-insights-list">
+                            <div class="ai-card green">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="trending-up"></i></div>
+                                    <div class="ai-details">
+                                        <h4>Quant Flexi Cap Fund</h4>
+                                        <p>showing strong momentum</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="ai-arrow"></i>
+                            </div>
+                            <div class="ai-card yellow">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="alert-triangle"></i></div>
+                                    <div class="ai-details">
+                                        <h4>Small Cap funds</h4>
+                                        <p>showing volatility increase</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="ai-arrow"></i>
+                            </div>
+                            <div class="ai-card purple">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="sparkles"></i></div>
+                                    <div class="ai-details">
+                                        <h4>SIP Inflows</h4>
+                                        <p>increased by 18.3%</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="ai-arrow"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Alerts -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>Recent Alerts</h3>
+                                <p>Timeline of critical warnings</p>
+                            </div>
+                        </div>
+                        <div class="alerts-timeline">
+                            <div class="alert-item red">
+                                <div class="alert-icon-wrapper">
+                                    <div class="alert-icon-dot"></div>
+                                    <div class="alert-line"></div>
+                                </div>
+                                <div class="alert-content">
+                                    <div>
+                                        <span class="alert-title">High expense ratio detected</span>
+                                        <p class="alert-desc">Axis Bluechip exceeds Advisory threshold</p>
+                                    </div>
+                                    <span class="alert-time">2 min ago</span>
+                                </div>
+                            </div>
+                            <div class="alert-item yellow">
+                                <div class="alert-icon-wrapper">
+                                    <div class="alert-icon-dot"></div>
+                                    <div class="alert-line"></div>
+                                </div>
+                                <div class="alert-content">
+                                    <div>
+                                        <span class="alert-title">Risk level changed to High</span>
+                                        <p class="alert-desc">Nippon India Small Cap rating updated</p>
+                                    </div>
+                                    <span class="alert-time">15 min ago</span>
+                                </div>
+                            </div>
+                            <div class="alert-item green">
+                                <div class="alert-icon-wrapper">
+                                    <div class="alert-icon-dot"></div>
+                                    <div class="alert-line"></div>
+                                </div>
+                                <div class="alert-content">
+                                    <div>
+                                        <span class="alert-title">New SIP registration successful</span>
+                                        <p class="alert-desc">₹5,000 monthly mandate set up</p>
+                                    </div>
+                                    <span class="alert-time">1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Section (Top Performing Funds) -->
+                <div class="table-card fade-in">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h3>Top Performing Funds</h3>
+                            <p>Ranked by Sharpe ratio with historical performance metrics</p>
+                        </div>
+                        <span style="color: var(--primary-blue); font-size: 0.85rem; cursor: pointer; font-weight: 600;">View All</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="premium-table">
+                            <thead>
+                                <tr>
+                                    <th>Fund Name</th>
+                                    <th>Category</th>
+                                    <th>1Y Return</th>
+                                    <th>3Y Return</th>
+                                    <th>5Y Return</th>
+                                    <th>Sharpe Ratio</th>
+                                    <th>AUM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="fund-cell">
+                                            <i data-lucide="star" class="star-icon"></i>
+                                            <span>Quant Flexi Cap Fund</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge blue">Flexi Cap</span></td>
+                                    <td class="val-green">28.35%</td>
+                                    <td class="val-green">26.45%</td>
+                                    <td class="val-green">22.34%</td>
+                                    <td>1.85</td>
+                                    <td>₹ 18,765 Cr</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fund-cell">
+                                            <i data-lucide="star" class="star-icon"></i>
+                                            <span>Parag Parikh Flexi Cap Fund</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge blue">Flexi Cap</span></td>
+                                    <td class="val-green">24.67%</td>
+                                    <td class="val-green">22.15%</td>
+                                    <td class="val-green">19.34%</td>
+                                    <td>1.68</td>
+                                    <td>₹ 45,678 Cr</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fund-cell">
+                                            <i data-lucide="star" class="star-icon"></i>
+                                            <span>Mirae Asset Large Cap Fund</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge gold">Large Cap</span></td>
+                                    <td class="val-green">22.41%</td>
+                                    <td class="val-green">19.78%</td>
+                                    <td class="val-green">17.25%</td>
+                                    <td>1.52</td>
+                                    <td>₹ 22,456 Cr</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fund-cell">
+                                            <i data-lucide="star" class="star-icon"></i>
+                                            <span>Nippon India Small Cap Fund</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge purple">Small Cap</span></td>
+                                    <td class="val-green">31.25%</td>
+                                    <td class="val-green">25.34%</td>
+                                    <td class="val-green">20.15%</td>
+                                    <td>1.73</td>
+                                    <td>₹ 11,234 Cr</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fund-cell">
+                                            <i data-lucide="star" class="star-icon"></i>
+                                            <span>HDFC Balanced Advantage Fund</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge blue">Hybrid</span></td>
+                                    <td class="val-green">16.78%</td>
+                                    <td class="val-green">14.55%</td>
+                                    <td class="val-green">12.34%</td>
+                                    <td>1.28</td>
+                                    <td>₹ 15,678 Cr</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Grid Layout 3 (SIP Trend and Downloads) -->
+                <div class="dashboard-grid-3 fade-in">
+                    <!-- Left: SIP Contribution Trend -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>SIP Contribution Trend</h3>
+                                <p>Monthly SIP participation amounts in Cr</p>
+                            </div>
+                        </div>
+                        <div id="sip-trend-chart" style="min-height: 250px;"></div>
+                    </div>
+
+                    <!-- Right: Downloads Panel -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>Data Center</h3>
+                                <p>Download workspace assets & resources</p>
+                            </div>
+                        </div>
+                        <div class="download-grid">
+                            <div class="dl-card" id="dl-csv">
+                                <i data-lucide="file-spreadsheet"></i>
+                                <span>CSV Dataset</span>
+                            </div>
+                            <div class="dl-card" id="dl-sqlite">
+                                <i data-lucide="server"></i>
+                                <span>SQLite DB</span>
+                            </div>
+                            <div class="dl-card" id="dl-ipynb">
+                                <i data-lucide="book-open"></i>
+                                <span>Notebooks</span>
+                            </div>
+                            <div class="dl-card" id="dl-pbi">
+                                <i data-lucide="layout-grid"></i>
+                                <span>Power BI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Command Palette Overlay -->
+    <div class="cmd-palette-overlay" id="cmd-palette-overlay">
+        <div class="cmd-palette">
+            <div class="cmd-header">
+                <i data-lucide="search"></i>
+                <input type="text" class="cmd-search-input" placeholder="Type a command or search..." id="cmd-input">
+            </div>
+            <ul class="cmd-results">
+                <li class="cmd-item active" data-url="#overview">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Go to Overview Dashboard</span>
+                    <span class="kbd">↵</span>
+                </li>
+                <li class="cmd-item" data-url="#explorer">
+                    <i data-lucide="search"></i>
+                    <span>Open Fund Explorer</span>
+                    <span class="kbd">↵</span>
+                </li>
+                <li class="cmd-item" data-url="#risk">
+                    <i data-lucide="shield-alert"></i>
+                    <span>Check Risk Analytics</span>
+                    <span class="kbd">↵</span>
+                </li>
+                <li class="cmd-item" data-url="#montecarlo">
+                    <i data-lucide="git-branch"></i>
+                    <span>Run Monte Carlo Forecasts</span>
+                    <span class="kbd">↵</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ApexCharts JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Script Module -->
+    <script src="script.js"></script>
+</body>
+</html>
