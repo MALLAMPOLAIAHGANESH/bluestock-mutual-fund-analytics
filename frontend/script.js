@@ -339,31 +339,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // === MONTE CARLO simulation ===
     function renderMonteCarloChart() {
         const el = document.querySelector("#montecarlo-chart");
-        if (!el) return;
-        const months = Array.from({length: 61}, (_, i) => `M${i}`);
-        // Generate 3 percentile paths
-        const p90 = [100]; const p50 = [100]; const p10 = [100];
-        for (let i = 1; i <= 60; i++) {
-            p90.push(parseFloat((p90[i-1] * (1 + 0.015 + Math.random() * 0.008)).toFixed(2)));
-            p50.push(parseFloat((p50[i-1] * (1 + 0.008 + Math.random() * 0.005)).toFixed(2)));
-            p10.push(parseFloat((p10[i-1] * (1 + 0.001 + (Math.random()-0.5) * 0.008)).toFixed(2)));
+        if (el) {
+            const months = Array.from({length: 61}, (_, i) => `M${i}`);
+            // Generate 3 percentile paths
+            const p90 = [100]; const p50 = [100]; const p10 = [100];
+            for (let i = 1; i <= 60; i++) {
+                p90.push(parseFloat((p90[i-1] * (1 + 0.015 + Math.random() * 0.008)).toFixed(2)));
+                p50.push(parseFloat((p50[i-1] * (1 + 0.008 + Math.random() * 0.005)).toFixed(2)));
+                p10.push(parseFloat((p10[i-1] * (1 + 0.001 + (Math.random()-0.5) * 0.008)).toFixed(2)));
+            }
+            new ApexCharts(el, {
+                series: [
+                    { name: '90th Percentile', data: p90 },
+                    { name: '50th Percentile (Median)', data: p50 },
+                    { name: '10th Percentile', data: p10 }
+                ],
+                chart: { type: 'line', height: 280, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#22C55E', '#3B82F6', '#EF4444'],
+                stroke: { curve: 'smooth', width: 2, dashArray: [0, 5, 3] },
+                dataLabels: { enabled: false },
+                xaxis: { categories: months, tickAmount: 12, labels: { show: true, rotate: 0 } },
+                yaxis: { title: { text: 'NAV (₹)', style: { color: '#94A3B8' } } },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme },
+                legend: { position: 'top' }
+            }).render();
         }
-        new ApexCharts(el, {
-            series: [
-                { name: '90th Percentile', data: p90 },
-                { name: '50th Percentile (Median)', data: p50 },
-                { name: '10th Percentile', data: p10 }
-            ],
-            chart: { type: 'line', height: 300, toolbar: { show: false }, foreColor: chartTheme.foreColor },
-            colors: ['#22C55E', '#3B82F6', '#EF4444'],
-            stroke: { curve: 'smooth', width: 2, dashArray: [0, 5, 3] },
-            dataLabels: { enabled: false },
-            xaxis: { categories: months, tickAmount: 12, labels: { show: true, rotate: 0 } },
-            yaxis: { title: { text: 'NAV (₹)', style: { color: '#94A3B8' } } },
-            grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
-            tooltip: { theme: chartTheme.tooltipTheme },
-            legend: { position: 'top' }
-        }).render();
+
+        // Probability Distribution bar chart for Monte Carlo page
+        const distEl = document.querySelector("#monte-distribution-chart");
+        if (distEl) {
+            new ApexCharts(distEl, {
+                series: [{ name: 'Probability Density', data: [0.5, 1.2, 3.4, 7.8, 15.6, 24.5, 20.1, 12.4, 5.2, 1.8, 0.5] }],
+                chart: { type: 'bar', height: 280, toolbar: { show: false }, foreColor: chartTheme.foreColor },
+                colors: ['#3B82F6'],
+                plotOptions: { bar: { borderRadius: 4, columnWidth: '60%' } },
+                xaxis: { categories: ['₹80','₹100','₹120','₹140','₹160','₹180','₹200','₹220','₹240','₹260','₹280'] },
+                grid: { borderColor: chartTheme.gridColor, strokeDashArray: 4 },
+                tooltip: { theme: chartTheme.tooltipTheme }
+            }).render();
+        }
     }
 
     // === SIP Report chart ===

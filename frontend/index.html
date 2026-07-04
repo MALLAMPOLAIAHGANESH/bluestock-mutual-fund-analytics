@@ -1464,40 +1464,334 @@
 
                 <!-- ===== PAGE: MARKOWITZ ===== -->
                 <div class="page-panel" data-page="markowitz">
-                    <div class="welcome-section"><div class="welcome-text"><h1>📐 Markowitz Optimizer</h1><p>Efficient frontier portfolio optimization using mean-variance analysis.</p></div></div>
-                    <div class="chart-card" style="min-height:350px">
-                        <div class="card-header"><div class="card-title"><h3>Efficient Frontier</h3><p>Risk vs Return trade-off for selected asset universe</p></div></div>
-                        <div id="frontier-chart" style="min-height:300px;"></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>📐 Markowitz Optimizer</h1>
+                            <p>Find the best portfolio allocation that gives the highest return for the lowest risk.</p>
+                        </div>
                     </div>
-                    <div class="kpi-grid" style="margin-top:24px">
-                        <div class="kpi-card green"><div class="kpi-header"><span>Optimal Return</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div><div class="kpi-body"><span class="kpi-value">18.4%</span><span class="kpi-change positive">Expected annualized</span></div></div>
-                        <div class="kpi-card blue"><div class="kpi-header"><span>Optimal Volatility</span><div class="kpi-icon"><i data-lucide="activity"></i></div></div><div class="kpi-body"><span class="kpi-value">12.7%</span><span class="kpi-change positive">Annualized σ</span></div></div>
-                        <div class="kpi-card purple"><div class="kpi-header"><span>Sharpe Ratio</span><div class="kpi-icon"><i data-lucide="shield-check"></i></div></div><div class="kpi-body"><span class="kpi-value">1.45</span><span class="kpi-change positive">Tangency portfolio</span></div></div>
+
+                    <!-- 1. Select Funds & 2. Portfolio Weight Allocation -->
+                    <div class="dashboard-grid-2 fade-in">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>1. Select Funds</h3><p>Choose asset universe to optimize</p></div></div>
+                            <div style="padding:20px; display:flex; flex-direction:column; gap:12px;">
+                                <label style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><input type="checkbox" checked> Quant Flexi Cap Fund</label>
+                                <label style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><input type="checkbox" checked> Parag Parikh Flexi Cap</label>
+                                <label style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><input type="checkbox" checked> Mirae Asset Large Cap</label>
+                                <label style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><input type="checkbox" checked> Nippon India Small Cap</label>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>2. Portfolio Weight Allocation</h3><p>Configure asset weighting thresholds</p></div></div>
+                            <div style="padding:20px; display:flex; flex-direction:column; gap:14px; font-size:0.8rem;">
+                                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>Quant Flexi Cap</span><strong>35%</strong></div><input type="range" style="width:100%" value="35"></div>
+                                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>Parag Parikh Flexi</span><strong>30%</strong></div><input type="range" style="width:100%" value="30"></div>
+                                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>Mirae Asset Large</span><strong>20%</strong></div><input type="range" style="width:100%" value="20"></div>
+                                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>Nippon Small Cap</span><strong>15%</strong></div><input type="range" style="width:100%" value="15"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Efficient Frontier Chart -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>3. Efficient Frontier</h3><p>Annualized Expected Return vs Volatility frontier curve</p></div></div>
+                        <div style="padding:0 20px 20px 20px;">
+                            <div id="frontier-chart" style="min-height:300px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Optimal / 5. Minimum Risk / 6. Maximum Sharpe Portfolio -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>Optimal Allocations Breakdown</h3><p>Comparison of optimized model allocations</p></div></div>
+                        <div class="table-wrapper" style="padding:0 15px 15px 15px;">
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model / Portfolio</th>
+                                        <th>Expected Return</th>
+                                        <th>Expected Volatility</th>
+                                        <th>Sharpe Ratio</th>
+                                        <th>Weights (Quant / PP / Mirae / Nippon)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background:rgba(59,130,246,0.06);">
+                                        <td><strong>4. Optimal Portfolio</strong></td>
+                                        <td class="val-green">18.40%</td>
+                                        <td>12.70%</td>
+                                        <td><strong>1.45</strong></td>
+                                        <td>35% / 30% / 20% / 15%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>5. Minimum Risk Portfolio</strong></td>
+                                        <td class="val-green">14.25%</td>
+                                        <td><strong>10.20%</strong></td>
+                                        <td>1.18</td>
+                                        <td>10% / 50% / 30% / 10%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>6. Maximum Sharpe Portfolio</strong></td>
+                                        <td class="val-green"><strong>21.85%</strong></td>
+                                        <td>15.42%</td>
+                                        <td><strong>1.42</strong></td>
+                                        <td>50% / 10% / 10% / 30%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 7. Expected Annual Return / 8. Expected Risk / 9. Portfolio Diversification -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card green">
+                            <div class="kpi-header"><span>7. Expected Return</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">18.4%</span><span class="kpi-change positive">Tangency portfolio CAGR</span></div>
+                        </div>
+                        <div class="kpi-card blue">
+                            <div class="kpi-header"><span>8. Expected Risk</span><div class="kpi-icon"><i data-lucide="activity"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">12.7%</span><span class="kpi-change positive">Annualized variance (σ)</span></div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-header"><span>9. Diversification HHI</span><div class="kpi-icon"><i data-lucide="shield-check"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">0.82</span><span class="kpi-change positive">Excellent sector spread</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Investment Recommendation -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>10. Investment Recommendation</h3><p>AI advisory allocations</p></div></div>
+                        <div class="ai-insights-list" style="padding:15px;">
+                            <div class="ai-card green">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="lightbulb"></i></div>
+                                    <div class="ai-details">
+                                        <h4>Optimal Rebalancing Mandate</h4>
+                                        <p>Based on mean-variance optimizations, the tangency portfolio yields the highest Sharpe ratio by weight-allocating <strong>35% to Quant Flexi Cap</strong> and limitingSmall Cap exposure to 15%.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ===== PAGE: MONTE CARLO ===== -->
                 <div class="page-panel" data-page="montecarlo">
-                    <div class="welcome-section"><div class="welcome-text"><h1>🎲 Monte Carlo Simulation</h1><p>10,000 Geometric Brownian Motion paths for portfolio forecasting.</p></div></div>
-                    <div class="chart-card" style="min-height:350px">
-                        <div class="card-header"><div class="card-title"><h3>Simulated NAV Paths (5Y)</h3><p>GBM projection with 10th / 50th / 90th percentile bands</p></div></div>
-                        <div id="montecarlo-chart" style="min-height:300px;"></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>🎲 Monte Carlo Simulation</h1>
+                            <p>Predict possible future fund or portfolio performance using thousands of simulations.</p>
+                        </div>
                     </div>
-                    <div class="kpi-grid" style="margin-top:24px">
-                        <div class="kpi-card green"><div class="kpi-header"><span>90th Percentile</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 284.50</span><span class="kpi-change positive">Best scenario</span></div></div>
-                        <div class="kpi-card blue"><div class="kpi-header"><span>50th Percentile</span><div class="kpi-icon"><i data-lucide="minus"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 178.20</span><span class="kpi-change positive">Median outcome</span></div></div>
-                        <div class="kpi-card gold"><div class="kpi-header"><span>10th Percentile</span><div class="kpi-icon"><i data-lucide="trending-down"></i></div></div><div class="kpi-body"><span class="kpi-value">₹ 98.40</span><span class="kpi-change negative">Worst scenario</span></div></div>
+
+                    <!-- 1. Select Fund / 2. Simulation Settings / 3. Number of Sims / 4. Period -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>Simulation Configuration</h3><p>Set parameters for Geometric Brownian Motion paths</p></div></div>
+                        <div style="padding:20px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+                            <div>
+                                <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">1. Select Fund / Portfolio</label>
+                                <select class="date-selector" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border-color);color:var(--text-color);padding:8px 12px;border-radius:8px;font-size:0.85rem;">
+                                    <option>Optimized Active Portfolio</option>
+                                    <option>Quant Flexi Cap Fund</option>
+                                    <option>Parag Parikh Flexi Cap</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">2. Simulation Settings (Drift / Vol)</label>
+                                <select class="date-selector" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border-color);color:var(--text-color);padding:8px 12px;border-radius:8px;font-size:0.85rem;">
+                                    <option>Historical Volatility & Drift</option>
+                                    <option>Stress-Test (2008 Crash levels)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">3. Number of Simulations</label>
+                                <div style="display:flex;align-items:center;gap:10px;"><input type="range" style="flex:1" min="1000" max="10000" value="10000"><strong>10,000</strong></div>
+                            </div>
+                            <div>
+                                <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">4. Investment Period</label>
+                                <div style="display:flex;align-items:center;gap:10px;"><input type="range" style="flex:1" min="1" max="5" value="5"><strong>5 Years</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Future Price Prediction Chart & 6. Probability Distribution Chart -->
+                    <div class="dashboard-grid-2">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>5. Future Price Prediction</h3><p>Geometric Brownian Motion simulation trails</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="montecarlo-chart" style="min-height:280px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>6. Probability Distribution</h3><p>Density breakdown of terminal NAV values</p></div></div>
+                            <div style="padding:0 20px 20px 20px;">
+                                <div id="monte-distribution-chart" style="min-height:280px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Confidence Interval & 8. Best / 9. Average / 10. Worst Scenarios -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card green">
+                            <div class="kpi-header"><span>8. Best Case Scenario (90th)</span><div class="kpi-icon"><i data-lucide="trending-up"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 284.50</span><span class="kpi-change positive">+184% growth probability</span></div>
+                        </div>
+                        <div class="kpi-card blue">
+                            <div class="kpi-header"><span>9. Average Scenario (Median)</span><div class="kpi-icon"><i data-lucide="minus"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 178.20</span><span class="kpi-change positive">+78.2% expected gain</span></div>
+                        </div>
+                        <div class="kpi-card gold">
+                            <div class="kpi-header"><span>10. Worst Case Scenario (10th)</span><div class="kpi-icon"><i data-lucide="trending-down"></i></div></div>
+                            <div class="kpi-body"><span class="kpi-value">₹ 98.40</span><span class="kpi-change negative">-1.6% loss probability</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 11. Simulation Statistics -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>11. Simulation Statistics</h3><p>Summary of forecasting metrics</p></div></div>
+                        <div class="table-wrapper" style="padding:0 15px 15px 15px;">
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th>Forecasting Parameter</th>
+                                        <th>Value / Probability</th>
+                                        <th>Confidence Bounds</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Probability of Capital Loss</td><td><strong>1.52%</strong></td><td>&lt; ₹100 threshold</td></tr>
+                                    <tr><td>Forecasting Standard Error</td><td>± ₹4.12</td><td>95% Confidence Interval</td></tr>
+                                    <tr><td>Simulated Mean Value</td><td>₹ 182.45</td><td>Symmetric around median</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ===== PAGE: BUSINESS INSIGHTS ===== -->
                 <div class="page-panel" data-page="insights">
-                    <div class="welcome-section"><div class="welcome-text"><h1>✨ Business Insights</h1><p>AI-generated strategic intelligence for portfolio managers.</p></div></div>
-                    <div class="ai-insights-list">
-                        <div class="ai-card green"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="trending-up"></i></div><div class="ai-details"><h4>Equity funds outperformed benchmarks by 3.2% on average</h4><p>Large Cap and Flexi Cap categories drove the bulk of outperformance in FY25.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
-                        <div class="ai-card yellow"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="alert-triangle"></i></div><div class="ai-details"><h4>Small Cap volatility increased 22% quarter-over-quarter</h4><p>Monitor drawdowns closely. Consider rebalancing into Mid Cap for stability.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
-                        <div class="ai-card purple"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="sparkles"></i></div><div class="ai-details"><h4>SIP inflows at all-time high of ₹ 21,500 Cr</h4><p>Retail participation continues to grow. B30 cities contributing 38% of new SIPs.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
-                        <div class="ai-card green"><div class="ai-card-content"><div class="ai-icon"><i data-lucide="shield-check"></i></div><div class="ai-details"><h4>Portfolio diversification score improved to 0.82 (HHI)</h4><p>Well-diversified across 6 categories. Concentration risk is within safe limits.</p></div></div><i data-lucide="chevron-right" class="ai-arrow"></i></div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>✨ Business Insights</h1>
+                            <p>Show business-level insights and important findings from the data.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1. Executive Summary -->
+                    <div class="chart-card fade-in">
+                        <div class="card-header"><div class="card-title"><h3>1. Executive Summary</h3><p>Strategic overview of platform statistics</p></div></div>
+                        <div style="padding:20px; font-size:0.88rem; line-height:1.7; color:var(--text-muted);">
+                            The Bluestock Mutual Fund Analytics platform tracks ₹2.45 Lakh Crores in assets under management across 42 active AMCs. Trailing analysis highlights robust absolute returns averaging 18.23% alongside highly stable risk metrics (Sharpe ratio 1.34). Systematic Investment Plans (SIP) remain the primary engine of capital inflow, offsetting market volatility in small-cap assets.
+                        </div>
+                    </div>
+
+                    <!-- 2. Best / 3. Worst Performing Funds & 4. Top Fund Houses -->
+                    <div class="dashboard-grid-3 fade-in" style="margin-top:10px;">
+                        <!-- 2. Best Performing -->
+                        <div style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:20px;">
+                            <h4 style="font-size:0.9rem; color:var(--green); margin-bottom:12px;"><i data-lucide="trending-up" style="vertical-align:middle;margin-right:6px;width:16px;height:16px;"></i>2. Best Performing</h4>
+                            <ul style="font-size:0.78rem; display:flex; flex-direction:column; gap:8px;">
+                                <li>Nippon India Small Cap (+31.25%)</li>
+                                <li>Quant Flexi Cap Fund (+28.35%)</li>
+                                <li>Kotak Emerging Equity (+26.89%)</li>
+                            </ul>
+                        </div>
+                        <!-- 3. Worst Performing -->
+                        <div style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:20px;">
+                            <h4 style="font-size:0.9rem; color:var(--red); margin-bottom:12px;"><i data-lucide="trending-down" style="vertical-align:middle;margin-right:6px;width:16px;height:16px;"></i>3. Worst Performing</h4>
+                            <ul style="font-size:0.78rem; display:flex; flex-direction:column; gap:8px;">
+                                <li>Aditya Birla Debt Fund (+5.20%)</li>
+                                <li>Axis Corporate Debt (+6.12%)</li>
+                                <li>HDFC Short Term Debt (+6.85%)</li>
+                            </ul>
+                        </div>
+                        <!-- 4. Top Fund Houses -->
+                        <div style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:20px;">
+                            <h4 style="font-size:0.9rem; color:var(--primary-blue); margin-bottom:12px;"><i data-lucide="building" style="vertical-align:middle;margin-right:6px;width:16px;height:16px;"></i>4. Top Fund Houses</h4>
+                            <ul style="font-size:0.78rem; display:flex; flex-direction:column; gap:8px;">
+                                <li>SBI Mutual Fund (₹42,123 Cr AUM)</li>
+                                <li>HDFC Mutual Fund (₹38,750 Cr AUM)</li>
+                                <li>ICICI Prudential Fund (₹32,100 Cr AUM)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 5. Category Performance & 6. Risk vs Return Insights -->
+                    <div class="dashboard-grid-2 fade-in" style="margin-top:10px;">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>5. Category Performance</h3><p>CAGR and volatility averages by group</p></div></div>
+                            <div class="table-wrapper" style="padding:10px 15px;">
+                                <table class="premium-table">
+                                    <thead><tr><th>Category</th><th>Avg CAGR</th><th>Average Sharpe</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Small Cap</td><td class="val-green">31.2%</td><td>1.73</td></tr>
+                                        <tr><td>Mid Cap</td><td class="val-green">24.3%</td><td>1.62</td></tr>
+                                        <tr><td>Flexi Cap</td><td class="val-green">22.1%</td><td>1.68</td></tr>
+                                        <tr><td>Large Cap</td><td class="val-green">18.5%</td><td>1.52</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>6. Risk vs Return Insights</h3><p>Volatility frontier evaluations</p></div></div>
+                            <div style="padding:20px; font-size:0.82rem; color:var(--text-muted); line-height:1.6;">
+                                High volatility in small-cap funds (22.8% σ) is adequately compensated by excess alpha returns, leading to a high Sharpe ratio (1.73). Flexi Cap schemes offer the best compromise, offering 85% of small-cap return potential while reducing localized variance by nearly 30%.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Investor Trends & 8. SIP Growth Analysis -->
+                    <div class="dashboard-grid-2 fade-in" style="margin-top:10px;">
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>7. Investor Trends</h3><p>Capital flow shifts</p></div></div>
+                            <div style="padding:20px; font-size:0.82rem; color:var(--text-muted); line-height:1.6;">
+                                Direct plans have grown from 45% to 58% of active folios over the last 18 months, indicating rising retail sophistication and fee-consciousness. Equity schemes continue to capture 72% of net inflows.
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="card-header"><div class="card-title"><h3>8. SIP Growth Analysis</h3><p>Systematic investment trends</p></div></div>
+                            <div style="padding:20px; font-size:0.82rem; color:var(--text-muted); line-height:1.6;">
+                                Monthly industry-wide SIP inflows reached ₹21,500 Crores in May 2025, showing a steady YoY growth of 18.3%. Average SIP ticket size has matured to ₹2,400 per account.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Portfolio Recommendations & 10. Key Findings & 11. Actions -->
+                    <div class="chart-card fade-in" style="margin-top:10px;">
+                        <div class="card-header"><div class="card-title"><h3>Strategic Conclusions & Recommendations</h3><p>9. Portfolio Recommendations, 10. Key Findings, and 11. Actionable Recommendations</p></div></div>
+                        <div class="ai-insights-list" style="padding:15px; display:flex; flex-direction:column; gap:12px;">
+                            <div class="ai-card green">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="award"></i></div>
+                                    <div class="ai-details">
+                                        <h4>9. Portfolio Recommendations</h4>
+                                        <p>Maintain 60% in high-performing Flexi Cap and Large Cap schemes to anchor the portfolio. Limit Small Cap assets to 15% maximum to shield capital from localized drawdowns.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-card purple">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="info"></i></div>
+                                    <div class="ai-details">
+                                        <h4>10. Key Business Findings</h4>
+                                        <p>Retail systematically registered mandates (SIP) represent the most resilient capital base on the platform, showing less than 2% cancellation rates during market consolidations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-card green">
+                                <div class="ai-card-content">
+                                    <div class="ai-icon"><i data-lucide="check-circle"></i></div>
+                                    <div class="ai-details">
+                                        <h4>11. Actionable Recommendations</h4>
+                                        <p>Automate alert notifications for expense ratio thresholds exceeding 1.25%, and deploy the Markowitz Optimizer quarterly to rebalance assets to optimal Sharpe weights.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
