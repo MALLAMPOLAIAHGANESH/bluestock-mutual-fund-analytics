@@ -3,6 +3,7 @@ dashboard/app.py
 ================
 Bluestock MF Capstone — V2 Dashboard (Custom Palette & Layout)
 """
+# pyrefly: ignore [missing-import]
 import streamlit as st
 import os
 from pathlib import Path
@@ -17,6 +18,7 @@ st.set_page_config(
 # ── Apply Custom CSS ──
 def load_css():
     from pathlib import Path
+    # pyrefly: ignore [missing-import]
     import streamlit as st
     css_path = Path(__file__).resolve().parent.parent / 'style.css' if 'pages' in str(Path(__file__).resolve()) else Path(__file__).resolve().parent / 'style.css'
     if css_path.exists():

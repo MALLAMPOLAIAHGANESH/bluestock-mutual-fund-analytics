@@ -1,9 +1,13 @@
 """Page 4 — Risk Analytics"""
 from pathlib import Path
+# pyrefly: ignore [missing-import]
 import numpy as np
 import pandas as pd
+# pyrefly: ignore [missing-import]
 import plotly.express as px
+# pyrefly: ignore [missing-import]
 import plotly.graph_objects as go
+# pyrefly: ignore [missing-import]
 import streamlit as st
 
 st.set_page_config(page_title="Risk Analytics | Bluestock MF", layout="wide", page_icon="⚠️")
@@ -11,6 +15,7 @@ st.set_page_config(page_title="Risk Analytics | Bluestock MF", layout="wide", pa
 # ── Apply Custom CSS ──
 def load_css():
     from pathlib import Path
+    # pyrefly: ignore [missing-import]
     import streamlit as st
     css_path = Path(__file__).resolve().parent.parent / 'style.css' if 'pages' in str(Path(__file__).resolve()) else Path(__file__).resolve().parent / 'style.css'
     if css_path.exists():

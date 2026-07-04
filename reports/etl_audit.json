@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-07-04T12:31:33.207936",
+  "started_at": "2026-07-04T16:18:57.876344",
   "stages": {
     "extract": {
       "fund_master": 40,
@@ -31,7 +31,6 @@
       "warnings": 0
     },
     "load": {
-      "fund_master": 40,
       "nav_history": 46000,
       "scheme_performance": 40,
       "aum_by_fund_house": 90,
@@ -43,9 +42,9 @@
       "benchmark_indices": 8050
     }
   },
-  "finished_at": "2026-07-04T12:31:40.684688",
-  "elapsed_sec": 7.48,
+  "finished_at": "2026-07-04T16:18:59.349971",
+  "elapsed_sec": 1.47,
   "issues": [],
   "db_path": "C:\\Users\\polai\\OneDrive\\Desktop\\Mutual Funds and Stock Market concepts\\bluestock_mf_capstone\\data\\bluestock_mf.db",
-  "db_size_bytes": 5427200
+  "db_size_bytes": 5177344
 }

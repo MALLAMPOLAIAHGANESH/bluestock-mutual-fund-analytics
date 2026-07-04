@@ -10,7 +10,11 @@ Build Performance_Analytics.ipynb with all required analytics:
 - Benchmark Comparison Chart (top 5 vs Nifty 50 & Nifty 100)
 """
 
+# pyrefly: ignore [missing-import]
+from pathlib import Path
+# pyrefly: ignore [missing-import]
 import nbformat as nbf
+# pyrefly: ignore [missing-import]
 from nbconvert.preprocessors import ExecutePreprocessor
 import os
 

@@ -25,6 +25,96 @@ The objective of this project is to build a production-ready data analytics pipe
 
 ---
 
+## 📐 System Architecture & Database Design
+
+### 1. Data Pipeline & Architecture
+```mermaid
+graph TD
+    subgraph Data Sources
+        RawCSV["Raw CSV Files (AMFI Data, NAV, Txns, etc.)"]
+    end
+    subgraph Data Pipeline (ETL)
+        ETL["scripts/etl_pipeline.py"]
+        Clean["Data Cleaning & Integrity Validation"]
+        Audit["reports/etl_audit.json (Data Quality Log)"]
+    end
+    subgraph Relational Storage
+        DB[("SQLite Database (bluestock_mf.db)")]
+    end
+    subgraph Analytics & Modeling
+        MC["Monte Carlo (Geometric Brownian Motion)"]
+        Markowitz["Markowitz Efficient Frontier Portfolio"]
+    end
+    subgraph Production UI
+        Streamlit["Streamlit Dashboard (app.py)"]
+    end
+
+    RawCSV --> ETL
+    ETL --> Clean
+    Clean --> Audit
+    Clean --> DB
+    DB --> MC
+    DB --> Markowitz
+    DB --> Streamlit
+    MC --> Streamlit
+    Markowitz --> Streamlit
+```
+
+### 2. Relational Database Schema (3NF ERD)
+```mermaid
+erDiagram
+    FUND_MASTER ||--o{ NAV_HISTORY : "tracks daily NAVs"
+    FUND_MASTER ||--|| SCHEME_PERFORMANCE : "has financial metrics"
+    FUND_MASTER ||--o{ INVESTOR_TRANSACTIONS : "receives orders"
+    FUND_MASTER ||--o{ PORTFOLIO_HOLDINGS : "contains stock allocations"
+
+    FUND_MASTER {
+        int amfi_code PK
+        string fund_house
+        string category
+        string fund_manager
+        string benchmark
+    }
+    NAV_HISTORY {
+        int amfi_code FK
+        date date
+        float nav
+    }
+    SCHEME_PERFORMANCE {
+        int amfi_code FK, PK
+        float return_1yr_pct
+        float return_3yr_pct
+        float return_5yr_pct
+        float sharpe_ratio
+        float std_dev_ann_pct
+        float max_drawdown_pct
+        string risk_grade
+    }
+    INVESTOR_TRANSACTIONS {
+        int amfi_code FK
+        string investor_id
+        string transaction_type
+        float amount_inr
+        date transaction_date
+        string city_tier
+        string gender
+        string state
+    }
+    PORTFOLIO_HOLDINGS {
+        int amfi_code FK
+        string stock_name
+        string sector
+        float weight_pct
+    }
+    BENCHMARK_INDICES {
+        string index_name PK
+        date date
+        float index_value
+    }
+```
+
+---
+
 ## 🛠 Tech Stack
 - **Data Engineering**: Python, Pandas, SQLAlchemy
 - **Database**: SQLite3
