@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allPages = document.querySelectorAll('.page-panel[data-page]');
     const renderedPages = new Set();
 
-    function navigateTo(pageId) {
+    window.navigateTo = function navigateTo(pageId) {
         // Hide all pages
         allPages.forEach(p => p.classList.remove('active'));
         // Remove active from all menu items
@@ -111,6 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
             navigateTo(pageId);
         });
     });
+
+    // Profile button → navigate to profile page
+    const profileBtn = document.getElementById('profile-btn');
+    if (profileBtn) {
+        profileBtn.style.cursor = 'pointer';
+        profileBtn.addEventListener('click', () => navigateTo('profile'));
+    }
 
     // Also handle command palette navigation
     document.querySelectorAll('.cmd-item[data-url]').forEach(cmd => {
