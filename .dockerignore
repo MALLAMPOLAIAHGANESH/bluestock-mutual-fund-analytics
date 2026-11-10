@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git
+.github
+.env
+.ipynb_checkpoints/
+.streamlit/config.toml (except if needed, but best to let container handle default or volume copy)
+*.log
+venv/
+env/
+.pytest_cache/
+tests/

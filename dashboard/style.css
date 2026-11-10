@@ -1,0 +1,75 @@
+/* dashboard/style.css */
+
+/* Hide Streamlit Header & Footer */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Custom typography & padding */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Styled Metric Cards */
+[data-testid="stMetric"] {
+    background-color: #1E293B; /* Slate 800 */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0, 0.4);
+    border-color: rgba(222, 161, 26, 0.5); /* Glow Gold Border */
+}
+
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #F8FAFC; 
+}
+
+/* Styled Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 20px;
+    border-bottom: 2px solid #1E293B;
+}
+.stTabs [data-baseweb="tab"] {
+    padding: 10px 15px;
+    border-radius: 6px 6px 0 0;
+    transition: background-color 0.2s, color 0.2s;
+    background-color: transparent;
+    color: #94A3B8;
+}
+.stTabs [aria-selected="true"] {
+    background-color: #1E293B;
+    color: #dea11a !important;
+    border-bottom: 2px solid #dea11a;
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    background-color: #1E293B;
+    border-radius: 8px;
+    color: #F8FAFC;
+    font-weight: bold;
+}
+[data-testid="stExpander"] {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Download Buttons hover effects */
+button[kind="secondary"] {
+    transition: transform 0.2s, background-color 0.2s;
+}
+button[kind="secondary"]:hover {
+    transform: scale(1.02);
+    border-color: #dea11a;
+    color: #dea11a;
+}
