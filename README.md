@@ -2,7 +2,9 @@
 
 An enterprise-grade, end-to-end **Mutual Fund Analytics & Data Engineering** platform built using **Python, Pandas, SQLite, Streamlit, Plotly, and Machine Learning (Monte Carlo & Markowitz)**. This project demonstrates the complete data analytics lifecycle—from raw data ingestion and integrity validation to database design, risk modeling, and a highly polished business intelligence web application.
 
-
+> [!NOTE]
+> **Portfolio Impact Statement**  
+> This platform showcases production-ready data engineering, analytics, and DevOps practices. It ingests 10 raw financial datasets (100,000+ records), enforces data quality and referential integrity via a 3NF relational database, runs 10,000 Monte Carlo NAV growth simulations, constructs Markowitz portfolio optimizations, and automates PDF executive report generation—all served via a custom Midnight Slate dashboard.
 
 ---
 
